@@ -68,6 +68,8 @@ function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [loginData, setLoginData] = useState({ emailOrCpf: '', password: '' });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cpfForPlans, setCpfForPlans] = useState('');
+  const [cpfPlansError, setCpfPlansError] = useState('');
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -75,7 +77,7 @@ function App() {
 
   const navigateTo = (page: string) => {
     setCurrentPage(page);
-    setMobileMenuOpen(false);
+    setIsMenuOpen(false);
     window.scrollTo(0, 0);
   };
 
@@ -97,6 +99,30 @@ function App() {
 
   const handleLoginInputChange = (field: string, value: string) => {
     setLoginData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleCPFForPlansSubmit = () => {
+    const cleanCPF = cpfForPlans.replace(/\D/g, '');
+    
+    if (cleanCPF.length !== 11) {
+      setCpfPlansError('CPF deve conter 11 dígitos');
+      return;
+    }
+
+    if (validCPFs.includes(cleanCPF)) {
+      setCurrentPage('all-plans');
+      setCpfPlansError('');
+      setCpfForPlans('');
+    } else {
+      // CPF não encontrado - redirecionar para home com mensagem discreta
+      setTimeout(() => {
+        setCurrentPage('home');
+        setCpfForPlans('');
+        setCpfPlansError('');
+        // Aqui você pode adicionar uma notificação discreta se desejar
+      }, 1500);
+      setCpfPlansError('CPF não encontrado');
+    }
   };
 
   const handleCPFSubmit = () => {
@@ -186,6 +212,161 @@ function App() {
     }
   ];
 
+  // Renderização condicional baseada na página atual
+  if (currentPage === 'login') {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        {/* Header */}
+        <header className="bg-black border-b border-gold/20 sticky top-0 z-40">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <div className="flex items-center">
+                <img 
+                  src="/kw_transparent.png" 
+                  alt="KW Advocacia" 
+                  className="h-12 w-auto"
+                />
+              </div>
+              
+              <button
+                onClick={() => navigateTo('home')}
+                className="text-white hover:text-gold transition-colors flex items-center gap-2"
+              >
+                <ArrowLeft size={18} />
+                Voltar
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {/* Login/CPF Verification Page */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-md mx-auto">
+            <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
+              <div className="text-center mb-8">
+                <img 
+                  src="/kw_transparent.png" 
+                  alt="KW Advocacia" 
+                  className="h-16 w-auto mx-auto mb-6"
+                />
+                <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
+                <p className="text-gray-300">
+                  Digite seu CPF para acessar os planos
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    CPF
+                  </label>
+                  <input
+                    type="text"
+                    value={cpfForPlans}
+                    onChange={(e) => setCpfForPlans(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="000.000.000-00"
+                    maxLength={11}
+                  />
+                  {cpfPlansError && (
+                    <p className="text-red-400 text-sm mt-2">{cpfPlansError}</p>
+                  )}
+                </div>
+
+                <button
+                  onClick={handleCPFForPlansSubmit}
+                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors"
+                >
+                  Acessar Planos
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  if (currentPage === 'all-plans') {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        {/* Header */}
+        <header className="bg-black border-b border-gold/20 sticky top-0 z-40">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <div className="flex items-center">
+                <img 
+                  src="/kw_transparent.png" 
+                  alt="KW Advocacia" 
+                  className="h-12 w-auto"
+                />
+              </div>
+              
+              <button
+                onClick={() => navigateTo('home')}
+                className="text-white hover:text-gold transition-colors flex items-center gap-2"
+              >
+                <ArrowLeft size={18} />
+                Voltar ao Início
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {/* All Plans Page */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-5xl font-serif mb-6 text-gold">Nossos Planos</h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Escolha o plano ideal para suas necessidades jurídicas
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {plans.map((plan, index) => {
+                const planDetail = planDetails[plan.name as keyof typeof planDetails];
+                return (
+                  <div key={index} className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
+                    <h3 className="text-2xl font-serif mb-4 text-gold">{plan.name}</h3>
+                    
+                    <div className="text-center mb-6">
+                      <div className="text-3xl font-bold text-gold mb-2">
+                        R$ {planDetail?.price}
+                      </div>
+                      <div className="text-gray-400 text-sm">por mês</div>
+                      <div className="text-xs text-gray-500 mt-2">
+                        {planDetail?.description}
+                      </div>
+                    </div>
+
+                    <ul className="space-y-3 mb-6">
+                      {plan.benefits.map((benefit, idx) => (
+                        <li key={idx} className="flex items-center text-gray-300">
+                          <CheckCircle className="text-gold mr-2 flex-shrink-0" size={16} />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <button 
+                      onClick={openWhatsApp}
+                      className="w-full bg-gold text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle size={18} />
+                      Quero Este Plano
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Página principal (home)
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
@@ -366,33 +547,16 @@ function App() {
       <section id="planos" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">Planos de Adesão</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Escolha o plano ideal para suas necessidades jurídicas
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {plans.map((plan, index) => (
-              <div key={index} className="bg-black p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
-                <h3 className="text-2xl font-serif mb-4 text-gold">{plan.name}</h3>
-                <ul className="space-y-3 mb-6">
-                  {plan.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-center text-gray-300">
-                      <CheckCircle className="text-gold mr-2 flex-shrink-0" size={16} />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-                <button 
-                  onClick={() => handleVerifyValue(plan.name)}
-                  className="w-full bg-gold text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
-                >
-                  <Eye size={18} />
-                  Ver Valor
-                </button>
-              </div>
-            ))}
+            <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">Modalidade de Acompanhamento Jurídico</h2>
+            <div className="mt-8">
+              <button 
+                onClick={() => navigateTo('login')}
+                className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center gap-2"
+              >
+                <User size={20} />
+                Login
+              </button>
+            </div>
           </div>
         </div>
       </section>

@@ -33,7 +33,7 @@ import {
 } from 'lucide-react';
 
 const whatsappNumber = "5521998417061";
-const whatsappMessage = "Olá! Gostaria de saber mais sobre os planos jurídicos da KW Advocacia Digital.";
+const whatsappMessage = "Olá, gostaria de obter mais informações sobre os serviços jurídicos da KW Advocacia.";
 
 const openWhatsApp = () => {
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -70,6 +70,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cpfForPlans, setCpfForPlans] = useState('');
   const [cpfPlansError, setCpfPlansError] = useState('');
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [registerData, setRegisterData] = useState({ name: '', email: '', cpf: '' });
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -99,6 +101,19 @@ function App() {
 
   const handleLoginInputChange = (field: string, value: string) => {
     setLoginData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleRegisterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Cadastro enviado:', registerData);
+    // Simular cadastro bem-sucedido
+    setShowRegisterModal(false);
+    setRegisterData({ name: '', email: '', cpf: '' });
+    // Aqui você pode adicionar uma notificação de sucesso
+  };
+
+  const handleRegisterInputChange = (field: string, value: string) => {
+    setRegisterData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleCPFForPlansSubmit = () => {
@@ -195,20 +210,24 @@ function App() {
 
   const faqs = [
     {
-      question: "Como funciona a assinatura dos planos?",
-      answer: "Nossos planos são mensais e podem ser cancelados a qualquer momento. Você tem acesso imediato aos serviços após a contratação."
+      question: "Como funciona o atendimento jurídico?",
+      answer: "Oferecemos atendimento personalizado através de consultas presenciais, por telefone, WhatsApp e videochamada, sempre com foco na resolução eficiente das suas questões jurídicas."
     },
     {
-      question: "Posso alterar meu plano depois?",
-      answer: "Sim, você pode fazer upgrade ou downgrade do seu plano a qualquer momento através da área do cliente."
+      question: "Quais documentos preciso levar para a consulta?",
+      answer: "Os documentos necessários variam conforme o tipo de questão jurídica. Nossa equipe orientará você sobre a documentação específica durante o agendamento da consulta."
     },
     {
       question: "Os atendimentos são presenciais?",
-      answer: "Oferecemos atendimento digital via WhatsApp, videochamada e e-mail. Atendimentos presenciais podem ser agendados quando necessário."
+      answer: "Sim, oferecemos atendimentos presenciais em nosso escritório, além de consultas digitais via WhatsApp, videochamada e e-mail para maior comodidade dos clientes."
     },
     {
-      question: "Qual a diferença entre os planos?",
-      answer: "A principal diferença está no número de consultas mensais, prioridade no atendimento e serviços inclusos. Consulte nossa tabela comparativa."
+      question: "Como agendar uma consulta?",
+      answer: "Você pode agendar sua consulta através do nosso WhatsApp, telefone ou e-mail. Nossa equipe está disponível para orientá-lo sobre horários e modalidades de atendimento."
+    },
+    {
+      question: "Qual o prazo para resolução dos casos?",
+      answer: "O prazo varia conforme a complexidade e natureza de cada caso. Durante a consulta inicial, fornecemos uma estimativa realista baseada na nossa experiência e análise específica da situação."
     }
   ];
 
@@ -375,9 +394,9 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="/image.png" 
-                alt="KW Advocacia" 
-                className="h-12 w-auto"
+                src="/kw_transparent.png" 
+                alt="KW SOCIEDADE DE ADVOGADOS" 
+                className="h-32 w-auto"
               />
             </div>
             
@@ -434,9 +453,9 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="/image.png" 
-              alt="KW Advocacia" 
-              className="h-24 w-auto mx-auto mb-6"
+              src="/kw_transparent.png" 
+              alt="KW SOCIEDADE DE ADVOGADOS" 
+              className="h-48 md:h-64 w-auto mx-auto mb-6"
             />
           </div>
           <h1 className="text-4xl md:text-6xl font-serif mb-6 text-gold">
@@ -471,7 +490,7 @@ function App() {
                 <Scale className="text-gold" size={32} />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gold">Experiência</h3>
-              <p className="text-gray-300">Mais de 10 anos de experiência em diversas áreas do direito</p>
+              <p className="text-gray-300">Mais de 20 anos de experiência em diversas áreas do direito</p>
             </div>
             
             <div className="text-center">
@@ -505,15 +524,21 @@ function App() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
-              <Gavel className="text-gold mb-4" size={32} />
-              <h3 className="text-xl font-semibold mb-3 text-gold">Direito Civil</h3>
-              <p className="text-gray-300">Contratos, responsabilidade civil, direitos reais e obrigações</p>
+              <FileText className="text-gold mb-4" size={32} />
+              <h3 className="text-xl font-semibold mb-3 text-gold">Direito Cível</h3>
+              <p className="text-gray-300">Ações cíveis, reparação de danos, direitos e deveres civis</p>
             </div>
             
             <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
               <Home className="text-gold mb-4" size={32} />
               <h3 className="text-xl font-semibold mb-3 text-gold">Direito Imobiliário</h3>
               <p className="text-gray-300">Compra, venda, locação e regularização de imóveis</p>
+            </div>
+            
+            <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
+              <Shield className="text-gold mb-4" size={32} />
+              <h3 className="text-xl font-semibold mb-3 text-gold">Direito Previdenciário</h3>
+              <p className="text-gray-300">Aposentadorias, pensões, benefícios e revisões previdenciárias</p>
             </div>
             
             <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
@@ -529,9 +554,21 @@ function App() {
             </div>
             
             <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
+              <FileText className="text-gold mb-4" size={32} />
+              <h3 className="text-xl font-semibold mb-3 text-gold">Contratos e Negociações</h3>
+              <p className="text-gray-300">Elaboração, revisão e negociação de contratos diversos</p>
+            </div>
+            
+            <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
               <Hammer className="text-gold mb-4" size={32} />
               <h3 className="text-xl font-semibold mb-3 text-gold">Direito Trabalhista</h3>
               <p className="text-gray-300">Rescisões, verbas trabalhistas e consultoria empresarial</p>
+            </div>
+            
+            <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
+              <HandHeart className="text-gold mb-4" size={32} />
+              <h3 className="text-xl font-semibold mb-3 text-gold">Soluções Extrajudiciais</h3>
+              <p className="text-gray-300">Mediação, conciliação e resolução de conflitos sem litígio</p>
             </div>
             
             <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
@@ -650,12 +687,12 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <img 
-                src="/image.png" 
-                alt="KW Advocacia" 
-                className="h-12 w-auto mb-4"
+                src="/kw_transparent.png" 
+                alt="KW SOCIEDADE DE ADVOGADOS" 
+                className="h-20 w-auto mb-4"
               />
               <p className="text-gray-400 mb-4">
-                Advocacia digital moderna e acessível para você e sua família.
+                Soluções jurídicas modernas e acessíveis para você e sua família.
               </p>
               <div className="flex space-x-4">
                 <div className="bg-gold/10 rounded-full w-10 h-10 flex items-center justify-center">
@@ -665,27 +702,28 @@ function App() {
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-gold">Serviços</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Direito Civil</li>
-                <li>Direito de Família</li>
-                <li>Direito Empresarial</li>
-                <li>Consultoria Jurídica</li>
-              </ul>
-            </div>
-            
-            <div>
               <h4 className="text-lg font-semibold mb-4 text-gold">Contato</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>(21) 99841-7061</li>
                 <li>contato@kwadvocacia.com.br</li>
+                <li>suporte@kwadvocacia.com.br</li>
                 <li>Seg-Sex: 9h às 18h</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4 text-gold">Serviços</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Direito Cível</li>
+                <li>Direito de Família</li>
+                <li>Direito Empresarial</li>
+                <li>Direito Previdenciário</li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gold/20 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 KW Advocacia Digital. Todos os direitos reservados.</p>
+            <p>&copy; 2024 KW SOCIEDADE DE ADVOGADOS. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
@@ -756,10 +794,100 @@ function App() {
               </button>
               <div className="text-gray-400 text-sm">
                 Ainda não tem cadastro?{' '}
-                <span className="text-gold cursor-pointer hover:text-yellow-400 transition-colors">
+                <button 
+                  onClick={() => {
+                    setShowLoginModal(false);
+                    setShowRegisterModal(true);
+                  }}
+                  className="text-gold cursor-pointer hover:text-yellow-400 transition-colors"
+                >
                   Entre em contato
-                </span>
+                </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Cadastro */}
+      {showRegisterModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-serif text-white">Solicitar Cadastro</h2>
+              <button
+                onClick={() => setShowRegisterModal(false)}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/kw_transparent.png" 
+                alt="KW Sociedade de Advogados" 
+                className="h-16 w-auto"
+              />
+            </div>
+
+            <form onSubmit={handleRegisterSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Nome Completo
+                </label>
+                <input
+                  type="text"
+                  value={registerData.name}
+                  onChange={(e) => handleRegisterInputChange('name', e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                  placeholder="Digite seu nome completo"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  value={registerData.email}
+                  onChange={(e) => handleRegisterInputChange('email', e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                  placeholder="Digite seu e-mail"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  CPF
+                </label>
+                <input
+                  type="text"
+                  value={registerData.cpf}
+                  onChange={(e) => handleRegisterInputChange('cpf', e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                  placeholder="000.000.000-00"
+                  maxLength={11}
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
+              >
+                <UserCheck size={18} />
+                Solicitar Cadastro
+              </button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 text-sm">
+                Sua solicitação será processada em até 24 horas úteis.
+              </p>
             </div>
           </div>
         </div>

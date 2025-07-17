@@ -241,7 +241,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/kw_transparent.png" 
+                  src="/Inserir um subtítulo (5).png" 
                   alt="KW Advocacia" 
                   className="h-12 w-auto"
                 />
@@ -264,9 +264,9 @@ function App() {
             <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
               <div className="text-center mb-8">
                 <img 
-                  src="/kw_transparent.png" 
+                  src="/logo kw.png" 
                   alt="KW Advocacia" 
-                  className="h-16 w-auto mx-auto mb-6"
+                  className="h-16 w-auto"
                 />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
                 <p className="text-gray-300">
@@ -315,7 +315,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/kw_transparent.png" 
+                  src="/Inserir um subtítulo (5).png" 
                   alt="KW Advocacia" 
                   className="h-12 w-auto"
                 />
@@ -394,9 +394,9 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="/kw_transparent.png" 
+                src="/logo kw.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
-                className="h-32 w-auto"
+                className="h-24 w-auto"
               />
             </div>
             
@@ -453,9 +453,9 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="/kw_transparent.png" 
+              src="/logo kw.png" 
               alt="KW SOCIEDADE DE ADVOGADOS" 
-              className="h-48 md:h-64 w-auto mx-auto mb-6"
+              className="h-60 md:h-80 w-auto mx-auto mb-6"
             />
           </div>
           <h1 className="text-4xl md:text-6xl font-serif mb-6 text-gold">
@@ -687,9 +687,9 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <img 
-                src="/kw_transparent.png" 
+                src="/logo kw.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
-                className="h-20 w-auto mb-4"
+                className="h-24 w-auto mb-4"
               />
               <p className="text-gray-400 mb-4">
                 Soluções jurídicas modernas e acessíveis para você e sua família.
@@ -702,22 +702,25 @@ function App() {
             </div>
             
             <div>
+              <h4 className="text-lg font-semibold mb-4 text-gold">ÁREAS DE ATUAÇÃO</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Direito Cível</li>
+                <li>Direito do Consumidor</li>
+                <li>Direito de Família e Sucessões</li>
+                <li>Direito Trabalhista</li>
+                <li>Direito Previdenciário</li>
+                <li>Contratos e Negociações</li>
+                <li>Soluções Extrajudiciais</li>
+              </ul>
+            </div>
+            
+            <div>
               <h4 className="text-lg font-semibold mb-4 text-gold">Contato</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>(21) 99841-7061</li>
                 <li>contato@kwadvocacia.com.br</li>
                 <li>suporte@kwadvocacia.com.br</li>
                 <li>Seg-Sex: 9h às 18h</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-gold">Serviços</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Direito Cível</li>
-                <li>Direito de Família</li>
-                <li>Direito Empresarial</li>
-                <li>Direito Previdenciário</li>
               </ul>
             </div>
           </div>
@@ -744,9 +747,9 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/image.png" 
+                src="/logo kw.png" 
                 alt="KW Advocacia" 
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </div>
 
@@ -801,7 +804,7 @@ function App() {
                   }}
                   className="text-gold cursor-pointer hover:text-yellow-400 transition-colors"
                 >
-                  Entre em contato
+                  Cadastre-se Aqui
                 </button>
               </div>
             </div>
@@ -825,9 +828,9 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/kw_transparent.png" 
+                src="/logo kw.png" 
                 alt="KW Sociedade de Advogados" 
-                className="h-16 w-auto"
+                className="h-24 w-auto"
               />
             </div>
 
@@ -911,9 +914,9 @@ function App() {
 
                 <div className="flex justify-center mb-6">
                   <img 
-                    src="/image.png" 
+                    src="/logo kw.png" 
                     alt="KW Advocacia" 
-                    className="h-16 w-auto"
+                    className="h-20 w-auto mx-auto mb-6"
                   />
                 </div>
 

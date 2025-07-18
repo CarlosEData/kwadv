@@ -264,7 +264,7 @@ function App() {
             <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
               <div className="text-center mb-8">
                 <img 
-                  src="/logo correta.png" 
+                  src="/logo kw correta.png" 
                   alt="KW Advocacia" 
                   className="h-16 w-auto"
                 />

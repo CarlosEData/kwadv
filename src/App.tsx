@@ -242,8 +242,8 @@ function App() {
               <div className="flex items-center">
                 <img 
                   src="/logo kw correta.png" 
-                  alt="KW Advocacia" 
-                  className="h-12 w-auto"
+                  alt="KW SOCIEDADE DE ADVOGADOS" 
+                  className="h-24 w-auto"
                 />
               </div>
               
@@ -315,9 +315,9 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
-                  alt="KW Advocacia" 
-                  className="h-12 w-auto"
+                  src="/logo kw correta.png" 
+                  alt="KW SOCIEDADE DE ADVOGADOS" 
+                  className="h-24 w-auto"
                 />
               </div>
               
@@ -394,7 +394,7 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
+                src="/logo kw correta.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto"
               />
@@ -453,7 +453,7 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
+              src="/logo kw correta.png" 
               alt="KW SOCIEDADE DE ADVOGADOS" 
               className="h-60 md:h-80 w-auto mx-auto mb-6"
             />
@@ -828,7 +828,7 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
+                src="/logo kw correta.png" 
                 alt="KW Sociedade de Advogados" 
                 className="h-24 w-auto"
               />

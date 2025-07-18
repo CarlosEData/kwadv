@@ -241,7 +241,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/Inserir um subtítulo (5).png" 
+                  src="/logo kw correta.png" 
                   alt="KW Advocacia" 
                   className="h-12 w-auto"
                 />
@@ -264,7 +264,7 @@ function App() {
             <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
               <div className="text-center mb-8">
                 <img 
-                  src="/logo kw.png" 
+                  src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
                   alt="KW Advocacia" 
                   className="h-16 w-auto"
                 />
@@ -315,7 +315,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/Inserir um subtítulo (5).png" 
+                  src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
                   alt="KW Advocacia" 
                   className="h-12 w-auto"
                 />
@@ -394,7 +394,7 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="/logo kw.png" 
+                src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto"
               />
@@ -453,7 +453,7 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="/logo kw.png" 
+              src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
               alt="KW SOCIEDADE DE ADVOGADOS" 
               className="h-60 md:h-80 w-auto mx-auto mb-6"
             />
@@ -687,7 +687,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <img 
-                src="/logo kw.png" 
+                src="/logo kw correta.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto mb-4"
               />
@@ -747,7 +747,7 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo kw.png" 
+                src="/logo kw correta.png" 
                 alt="KW Advocacia" 
                 className="h-20 w-auto"
               />
@@ -828,7 +828,7 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo kw.png" 
+                src="https://drive.google.com/file/d/179FPug8848wHAVitpHl8ayTEs15WNI4b/view?usp=share_link" 
                 alt="KW Sociedade de Advogados" 
                 className="h-24 w-auto"
               />
@@ -914,7 +914,7 @@ function App() {
 
                 <div className="flex justify-center mb-6">
                   <img 
-                    src="/logo kw.png" 
+                    src="/logo kw correta.png" 
                     alt="KW Advocacia" 
                     className="h-20 w-auto mx-auto mb-6"
                   />

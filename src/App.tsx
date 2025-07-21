@@ -48,7 +48,7 @@ const validCPFs = [
   '22222222222'
 ];
 
-// Dados dos planos com preços (ocultos da interface principal)
+// Dados dos Modalidade de assessoria jurídica com preços (ocultos da interface principal)
 const planDetails = {
   'Essencial': { price: '97', description: 'Plano básico com 2 consultas mensais' },
   'Avançado': { price: '159', description: 'Plano intermediário com 4 consultas mensais' },
@@ -270,35 +270,48 @@ function App() {
                 />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
                 <p className="text-gray-300">
-                  Digite seu CPF para acessar os planos
+                  Digite seu CPF para acessar Modalidade de assessoria jurídica
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     CPF
                   </label>
                   <input
                     type="text"
-                    value={cpfForPlans}
-                    onChange={(e) => setCpfForPlans(e.target.value)}
+                    value={loginData.emailOrCpf}
+                    onChange={(e) => handleLoginInputChange('emailOrCpf', e.target.value)}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
                     placeholder="000.000.000-00"
                     maxLength={11}
+                    required
                   />
-                  {cpfPlansError && (
-                    <p className="text-red-400 text-sm mt-2">{cpfPlansError}</p>
-                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Senha
+                  </label>
+                  <input
+                    type="password"
+                    value={loginData.password}
+                    onChange={(e) => handleLoginInputChange('password', e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="Digite sua senha"
+                    required
+                  />
                 </div>
 
                 <button
-                  onClick={handleCPFForPlansSubmit}
-                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors"
+                  type="submit"
+                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
                 >
-                  Acessar Planos
+                  <Lock size={18} />
+                  Entrar
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </section>
@@ -336,7 +349,7 @@ function App() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-serif mb-6 text-gold">Nossos Planos</h1>
+              <h1 className="text-4xl md:text-5xl font-serif mb-6 text-gold">Nossas Modalidade de assessoria jurídica</h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Modalidades de assessoria jurídica
               </p>
@@ -404,7 +417,7 @@ function App() {
               <a href="#inicio" className="text-white hover:text-gold transition-colors">Início</a>
               <a href="#sobre" className="text-white hover:text-gold transition-colors">Sobre</a>
               <a href="#areas" className="text-white hover:text-gold transition-colors">Áreas</a>
-              <a href="#planos" className="text-white hover:text-gold transition-colors">Planos</a>
+              <a href="#Modalidade de assessoria jurídica" className="text-white hover:text-gold transition-colors">Modalidade de assessoria jurídica</a>
               <a href="#contato" className="text-white hover:text-gold transition-colors">Contato</a>
               <button 
                 onClick={() => setShowLoginModal(true)}
@@ -430,7 +443,7 @@ function App() {
                 <a href="#inicio" className="block py-2 text-white hover:text-gold transition-colors">Início</a>
                 <a href="#sobre" className="block py-2 text-white hover:text-gold transition-colors">Sobre</a>
                 <a href="#areas" className="block py-2 text-white hover:text-gold transition-colors">Áreas</a>
-                <a href="#planos" className="block py-2 text-white hover:text-gold transition-colors">Planos</a>
+                <a href="#Modalidade de assessoria jurídica" className="block py-2 text-white hover:text-gold transition-colors">Modalidade de assessoria jurídica</a>
                 <a href="#contato" className="block py-2 text-white hover:text-gold transition-colors">Contato</a>
                 <button 
                   onClick={() => {
@@ -580,8 +593,8 @@ function App() {
         </div>
       </section>
 
-      {/* Planos Section */}
-      <section id="planos" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+      {/* Modalidade de assessoria jurídica Section */}
+      <section id="Modalidade de assessoria jurídica" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">Modalidade de Acompanhamento Jurídico</h2>

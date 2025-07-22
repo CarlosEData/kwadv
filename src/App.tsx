@@ -290,9 +290,9 @@ function App() {
             <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
               <div className="text-center mb-8">
                 <img 
-                  src="/logo kw.png" 
+                  src="/logo01.png" 
                   alt="KW Advocacia" 
-                  className="h-16 w-auto"
+                  className="h-24 w-auto mx-auto mb-6"
                 />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
                 <p className="text-gray-300">
@@ -786,9 +786,9 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo kw.png" 
+                src="/logo01.png" 
                 alt="KW Advocacia" 
-                className="h-20 w-auto"
+                className="h-24 w-auto mb-4"
               />
             </div>
 
@@ -880,9 +880,9 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo kw.png" 
+                src="/logo01.png" 
                 alt="KW Sociedade de Advogados" 
-                className="h-24 w-auto"
+                className="h-28 w-auto mb-4"
               />
             </div>
 
@@ -966,9 +966,9 @@ function App() {
 
                 <div className="flex justify-center mb-6">
                   <img 
-                    src="/logo kw.png" 
+                    src="/logo01.png" 
                     alt="KW Advocacia" 
-                    className="h-20 w-auto mx-auto mb-6"
+                    className="h-24 w-auto mx-auto mb-6"
                   />
                 </div>
 

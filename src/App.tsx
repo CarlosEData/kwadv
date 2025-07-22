@@ -35,23 +35,19 @@ import {
 const whatsappNumber = "5521998417061";
 const whatsappMessage = "Olá, gostaria de obter mais informações sobre os serviços jurídicos da KW Advocacia.";
 
+// Credenciais válidas para acesso às modalidades
+const validCredentials = {
+  "05232003747": "123456",
+  "22299375880": "123456"
+};
+
 const openWhatsApp = () => {
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   window.open(url, '_blank');
 };
 
-// Base simulada de CPFs válidos para teste
-const validCPFs = [
-  '12345678901',
-  '98765432100',
-  '05232003747',
-  '22299375880',
-  '11111111111',
-  '22222222222'
-];
-
-// Dados dos Modalidade de assessoria jurídica com preços (ocultos da interface principal)
-const planDetails = {
+// Dados das modalidades com preços (ocultos da interface principal)
+const modalityDetails = {
   'Essencial': { price: '97', description: 'Plano básico com 2 consultas mensais' },
   'Avançado': { price: '159', description: 'Plano intermediário com 4 consultas mensais' },
   'Premium': { price: '249', description: 'Plano completo com consultas ilimitadas' },
@@ -63,17 +59,20 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCPFModal, setShowCPFModal] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string>('');
+  const [selectedModality, setSelectedModality] = useState<string>('');
   const [cpfInput, setCpfInput] = useState('');
-  const [showPlanDetails, setShowPlanDetails] = useState(false);
+  const [showModalityDetails, setShowModalityDetails] = useState(false);
   const [cpfError, setCpfError] = useState('');
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [loginData, setLoginData] = useState({ emailOrCpf: '', password: '' });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cpfForPlans, setCpfForPlans] = useState('');
-  const [cpfPlansError, setCpfPlansError] = useState('');
+  const [cpfForModalities, setCpfForModalities] = useState('');
+  const [cpfModalitiesError, setCpfModalitiesError] = useState('');
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [registerData, setRegisterData] = useState({ name: '', email: '', cpf: '' });
+  const [loginError, setLoginError] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [cpfModalPassword, setCpfModalPassword] = useState('');
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -86,19 +85,43 @@ function App() {
   };
 
   const handleVerifyValue = (planName: string) => {
-    setSelectedPlan(planName);
+    setSelectedModality(planName);
     setShowCPFModal(true);
     setCpfInput('');
+    setCpfModalPassword('');
     setCpfError('');
-    setShowPlanDetails(false);
+    setShowModalityDetails(false);
   };
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login enviado:', loginData);
-    // Simular login bem-sucedido
-    setShowLoginModal(false);
-    setLoginData({ emailOrCpf: '', password: '' });
+    setIsLoggingIn(true);
+    setLoginError('');
+    
+    // Simular delay de verificação
+    setTimeout(() => {
+      const cpf = loginData.emailOrCpf.replace(/\D/g, ''); // Remove formatação
+      const password = loginData.password;
+      
+      // Verificar se as credenciais são válidas
+      if (validCredentials[cpf] && validCredentials[cpf] === password) {
+        // Login bem-sucedido - redirecionar para modalidades
+        setShowLoginModal(false);
+        setCurrentPage('all-modalities');
+        setLoginData({ emailOrCpf: '', password: '' });
+        setLoginError('');
+      } else {
+        // Credenciais inválidas - mostrar erro e redirecionar para home
+        setLoginError('Dados inválidos. Apenas clientes cadastrados podem acessar esta área.');
+        setTimeout(() => {
+          setShowLoginModal(false);
+          setCurrentPage('home');
+          setLoginData({ emailOrCpf: '', password: '' });
+          setLoginError('');
+        }, 2500);
+      }
+      setIsLoggingIn(false);
+    }, 1000);
   };
 
   const handleLoginInputChange = (field: string, value: string) => {
@@ -118,60 +141,61 @@ function App() {
     setRegisterData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleCPFForPlansSubmit = () => {
-    const cleanCPF = cpfForPlans.replace(/\D/g, '');
+  const handleCPFForModalitiesSubmit = () => {
+    const cleanCPF = cpfForModalities.replace(/\D/g, '');
+    const password = cpfModalPassword;
     
-    if (cleanCPF.length !== 11) {
-      setCpfPlansError('CPF deve conter 11 dígitos');
-      return;
-    }
-
-    if (validCPFs.includes(cleanCPF)) {
-      setCurrentPage('all-plans');
-      setCpfPlansError('');
-      setCpfForPlans('');
+    // Verificar se o CPF e senha são válidos
+    if (validCredentials[cleanCPF] && validCredentials[cleanCPF] === password) {
+      setCurrentPage('all-modalities');
+      setCpfModalitiesError('');
+      setCpfForModalities('');
+      setCpfModalPassword('');
     } else {
-      // CPF não encontrado - redirecionar para home com mensagem discreta
+      setCpfModalitiesError('Dados inválidos. Apenas clientes cadastrados podem acessar esta área.');
       setTimeout(() => {
         setCurrentPage('home');
-        setCpfForPlans('');
-        setCpfPlansError('');
-        // Aqui você pode adicionar uma notificação discreta se desejar
+        setCpfForModalities('');
+        setCpfModalPassword('');
+        setCpfModalitiesError('');
       }, 1500);
-      setCpfPlansError('CPF não encontrado');
     }
   };
 
   const handleCPFSubmit = () => {
     const cleanCPF = cpfInput.replace(/\D/g, '');
+    const password = cpfModalPassword;
     
     if (cleanCPF.length !== 11) {
       setCpfError('CPF deve conter 11 dígitos');
       return;
     }
 
-    if (validCPFs.includes(cleanCPF)) {
-      setShowPlanDetails(true);
+    // Verificar se o CPF e senha são válidos
+    if (validCredentials[cleanCPF] && validCredentials[cleanCPF] === password) {
+      setShowModalityDetails(true);
       setCpfError('');
     } else {
-      setCpfError('CPF não localizado em nossa base');
+      setCpfError('Dados inválidos. Apenas clientes cadastrados podem acessar esta área.');
       setTimeout(() => {
         setShowCPFModal(false);
         setCpfError('');
         setCpfInput('');
+        setCpfModalPassword('');
       }, 2000);
     }
   };
 
   const closeCPFModal = () => {
     setShowCPFModal(false);
-    setShowPlanDetails(false);
+    setShowModalityDetails(false);
     setCpfInput('');
+    setCpfModalPassword('');
     setCpfError('');
-    setSelectedPlan('');
+    setSelectedModality('');
   };
 
-  const plans = [
+  const modalities = [
     {
       name: 'Essencial',
       benefits: [
@@ -243,9 +267,9 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/logo kw correta.png" 
-                  alt="KW SOCIEDADE DE ADVOGADOS" 
-                  className="h-24 w-auto"
+                  src="/Inserir um subtítulo (5).png" 
+                  alt="KW Advocacia" 
+                  className="h-12 w-auto"
                 />
               </div>
               
@@ -266,29 +290,28 @@ function App() {
             <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
               <div className="text-center mb-8">
                 <img 
-                  src="/logo kw correta.png" 
+                  src="/logo kw.png" 
                   alt="KW Advocacia" 
-                  className="h-16 w-auto mx-auto mb-4"
+                  className="h-16 w-auto"
                 />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
                 <p className="text-gray-300">
-                  Digite seu CPF para acessar Modalidade de assessoria jurídica
+                  Digite seu CPF para acessar as modalidades
                 </p>
               </div>
 
-              <form onSubmit={handleLoginSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     CPF
                   </label>
                   <input
                     type="text"
-                    value={loginData.emailOrCpf}
-                    onChange={(e) => handleLoginInputChange('emailOrCpf', e.target.value)}
+                    value={cpfForModalities}
+                    onChange={(e) => setCpfForModalities(e.target.value)}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
                     placeholder="000.000.000-00"
                     maxLength={11}
-                    required
                   />
                 </div>
 
@@ -298,22 +321,23 @@ function App() {
                   </label>
                   <input
                     type="password"
-                    value={loginData.password}
-                    onChange={(e) => handleLoginInputChange('password', e.target.value)}
+                    value={cpfModalPassword}
+                    onChange={(e) => setCpfModalPassword(e.target.value)}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
                     placeholder="Digite sua senha"
-                    required
                   />
+                  {cpfModalitiesError && (
+                    <p className="text-red-400 text-sm mt-2">{cpfModalitiesError}</p>
+                  )}
                 </div>
 
                 <button
-                  type="submit"
-                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
+                  onClick={handleCPFForModalitiesSubmit}
+                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors"
                 >
-                  <Lock size={18} />
-                  Entrar
+                  Acessar Modalidades
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </section>
@@ -321,7 +345,7 @@ function App() {
     );
   }
 
-  if (currentPage === 'all-plans') {
+  if (currentPage === 'all-modalities') {
     return (
       <div className="min-h-screen bg-black text-white">
         {/* Header */}
@@ -330,9 +354,9 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/logo kw correta.png" 
-                  alt="KW SOCIEDADE DE ADVOGADOS" 
-                  className="h-24 w-auto"
+                  src="/Inserir um subtítulo (5).png" 
+                  alt="KW Advocacia" 
+                  className="h-12 w-auto"
                 />
               </div>
               
@@ -351,31 +375,31 @@ function App() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-serif mb-6 text-gold">Nossas Modalidade de assessoria jurídica</h1>
+              <h1 className="text-4xl md:text-5xl font-serif mb-6 text-gold">Nossas Modalidades de Assessoria Jurídica</h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Modalidades de assessoria jurídica
+                Escolha a modalidade ideal para suas necessidades jurídicas
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {plans.map((plan, index) => {
-                const planDetail = planDetails[plan.name as keyof typeof planDetails];
+              {modalities.map((modality, index) => {
+                const modalityDetail = modalityDetails[modality.name as keyof typeof modalityDetails];
                 return (
                   <div key={index} className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-colors">
-                    <h3 className="text-2xl font-serif mb-4 text-gold">{plan.name}</h3>
+                    <h3 className="text-2xl font-serif mb-4 text-gold">{modality.name}</h3>
                     
                     <div className="text-center mb-6">
                       <div className="text-3xl font-bold text-gold mb-2">
-                        R$ {planDetail?.price}
+                        R$ {modalityDetail?.price}
                       </div>
                       <div className="text-gray-400 text-sm">por mês</div>
                       <div className="text-xs text-gray-500 mt-2">
-                        {planDetail?.description}
+                        {modalityDetail?.description}
                       </div>
                     </div>
 
                     <ul className="space-y-3 mb-6">
-                      {plan.benefits.map((benefit, idx) => (
+                      {modality.benefits.map((benefit, idx) => (
                         <li key={idx} className="flex items-center text-gray-300">
                           <CheckCircle className="text-gold mr-2 flex-shrink-0" size={16} />
                           {benefit}
@@ -388,7 +412,7 @@ function App() {
                       className="w-full bg-gold text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
                     >
                       <MessageCircle size={18} />
-                      Quero Este Plano
+                      Quero Esta Modalidade
                     </button>
                   </div>
                 );
@@ -409,7 +433,7 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="/logo kw correta.png" 
+                src="/logo kw.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto"
               />
@@ -419,7 +443,7 @@ function App() {
               <a href="#inicio" className="text-white hover:text-gold transition-colors">Início</a>
               <a href="#sobre" className="text-white hover:text-gold transition-colors">Sobre</a>
               <a href="#areas" className="text-white hover:text-gold transition-colors">Áreas</a>
-              <a href="#Modalidade de assessoria jurídica" className="text-white hover:text-gold transition-colors">Modalidade de assessoria jurídica</a>
+              <a href="#modalidades" className="text-white hover:text-gold transition-colors">Modalidades</a>
               <a href="#contato" className="text-white hover:text-gold transition-colors">Contato</a>
               <button 
                 onClick={() => setShowLoginModal(true)}
@@ -445,7 +469,7 @@ function App() {
                 <a href="#inicio" className="block py-2 text-white hover:text-gold transition-colors">Início</a>
                 <a href="#sobre" className="block py-2 text-white hover:text-gold transition-colors">Sobre</a>
                 <a href="#areas" className="block py-2 text-white hover:text-gold transition-colors">Áreas</a>
-                <a href="#Modalidade de assessoria jurídica" className="block py-2 text-white hover:text-gold transition-colors">Modalidade de assessoria jurídica</a>
+                <a href="#modalidades" className="block py-2 text-white hover:text-gold transition-colors">Modalidades</a>
                 <a href="#contato" className="block py-2 text-white hover:text-gold transition-colors">Contato</a>
                 <button 
                   onClick={() => {
@@ -468,7 +492,7 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="/logo kw correta.png" 
+              src="/logo kw.png" 
               alt="KW SOCIEDADE DE ADVOGADOS" 
               className="h-60 md:h-80 w-auto mx-auto mb-6"
             />
@@ -595,8 +619,8 @@ function App() {
         </div>
       </section>
 
-      {/* Modalidade de assessoria jurídica Section */}
-      <section id="Modalidade de assessoria jurídica" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+      {/* Modalidades Section */}
+      <section id="modalidades" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">Modalidade de Acompanhamento Jurídico</h2>
@@ -702,7 +726,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <img 
-                src="/logo kw correta.png" 
+                src="/logo kw.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto mb-4"
               />
@@ -762,7 +786,7 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo kw correta.png" 
+                src="/logo kw.png" 
                 alt="KW Advocacia" 
                 className="h-20 w-auto"
               />
@@ -795,14 +819,27 @@ function App() {
                   placeholder="Digite sua senha"
                   required
                 />
+                {loginError && (
+                  <p className="text-red-400 text-sm mt-2">{loginError}</p>
+                )}
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
+                disabled={isLoggingIn}
+                className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Lock size={18} />
-                Entrar
+                {isLoggingIn ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent"></div>
+                    Verificando...
+                  </>
+                ) : (
+                  <>
+                    <Lock size={18} />
+                    Entrar
+                  </>
+                )}
               </button>
             </form>
 
@@ -843,7 +880,7 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo kw correta.png" 
+                src="/logo kw.png" 
                 alt="KW Sociedade de Advogados" 
                 className="h-24 w-auto"
               />
@@ -915,7 +952,7 @@ function App() {
       {showCPFModal && (
         <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
-            {!showPlanDetails ? (
+            {!showModalityDetails ? (
               <>
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-serif text-white">Verificação de Cliente</h2>
@@ -929,7 +966,7 @@ function App() {
 
                 <div className="flex justify-center mb-6">
                   <img 
-                    src="/logo kw correta.png" 
+                    src="/logo kw.png" 
                     alt="KW Advocacia" 
                     className="h-20 w-auto mx-auto mb-6"
                   />
@@ -938,7 +975,7 @@ function App() {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Digite seu CPF para visualizar os valores
+                      CPF
                     </label>
                     <input
                       type="text"
@@ -947,6 +984,19 @@ function App() {
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
                       placeholder="000.000.000-00"
                       maxLength={11}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Senha
+                    </label>
+                    <input
+                      type="password"
+                      value={cpfModalPassword}
+                      onChange={(e) => setCpfModalPassword(e.target.value)}
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                      placeholder="Digite sua senha"
                     />
                     {cpfError && (
                       <p className="text-red-400 text-sm mt-2">{cpfError}</p>
@@ -964,7 +1014,7 @@ function App() {
             ) : (
               <>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-serif text-white">Plano {selectedPlan}</h2>
+                  <h2 className="text-2xl font-serif text-white">Modalidade {selectedModality}</h2>
                   <button
                     onClick={closeCPFModal}
                     className="text-gray-400 hover:text-white transition-colors"
@@ -975,16 +1025,16 @@ function App() {
 
                 <div className="text-center mb-6">
                   <div className="text-4xl font-bold text-gold mb-2">
-                    R$ {planDetails[selectedPlan as keyof typeof planDetails]?.price}
+                    R$ {modalityDetails[selectedModality as keyof typeof modalityDetails]?.price}
                   </div>
                   <div className="text-gray-400">por mês</div>
                   <div className="text-sm text-gray-500 mt-2">
-                    {planDetails[selectedPlan as keyof typeof planDetails]?.description}
+                    {modalityDetails[selectedModality as keyof typeof modalityDetails]?.description}
                   </div>
                 </div>
 
                 <div className="space-y-3 mb-6">
-                  {plans.find(p => p.name === selectedPlan)?.benefits.map((benefit, idx) => (
+                  {modalities.find(p => p.name === selectedModality)?.benefits.map((benefit, idx) => (
                     <div key={idx} className="flex items-center text-gray-300">
                       <CheckCircle className="text-gold mr-2 flex-shrink-0" size={16} />
                       {benefit}
@@ -997,7 +1047,7 @@ function App() {
                   className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
                 >
                   <MessageCircle size={18} />
-                  Quero Este Plano
+                  Quero Esta Modalidade
                 </button>
               </>
             )}

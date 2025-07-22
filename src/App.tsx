@@ -266,7 +266,7 @@ function App() {
                 <img 
                   src="/logo kw correta.png" 
                   alt="KW Advocacia" 
-                  className="h-16 w-auto"
+                  className="h-16 w-auto mx-auto mb-4"
                 />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
                 <p className="text-gray-300">

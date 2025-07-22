@@ -290,9 +290,9 @@ function App() {
             <div className="bg-gray-900 rounded-2xl p-8 border border-gold/20 shadow-2xl">
               <div className="text-center mb-8">
                 <img 
-                  src="/logo01.png" 
+                  src="/kw-logo.png" 
                   alt="KW Advocacia" 
-                  className="h-24 w-auto mx-auto mb-6"
+                  className="h-16 w-auto"
                 />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
                 <p className="text-gray-300">
@@ -433,7 +433,7 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="/logo kw.png" 
+                src="/kw-logo.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto"
               />
@@ -492,7 +492,7 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="/logo kw.png" 
+              src="/kw-logo.png" 
               alt="KW SOCIEDADE DE ADVOGADOS" 
               className="h-60 md:h-80 w-auto mx-auto mb-6"
             />
@@ -726,7 +726,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <img 
-                src="/logo kw.png" 
+                src="/kw-logo.png" 
                 alt="KW SOCIEDADE DE ADVOGADOS" 
                 className="h-24 w-auto mb-4"
               />
@@ -774,8 +774,8 @@ function App() {
       {showLoginModal && (
         <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-serif text-white">Área do Cliente</h2>
+           <div className="mb-6">
+             <h2 className="text-2xl font-serif text-white text-center">Área do Cliente</h2>
               <button
                 onClick={() => setShowLoginModal(false)}
                 className="text-gray-400 hover:text-white transition-colors"
@@ -786,9 +786,9 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo01.png" 
+                src="/kw-logo.png" 
                 alt="KW Advocacia" 
-                className="h-24 w-auto mb-4"
+                className="h-20 w-auto"
               />
             </div>
 
@@ -880,9 +880,9 @@ function App() {
 
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo01.png" 
+                src="/kw-logo.png" 
                 alt="KW Sociedade de Advogados" 
-                className="h-28 w-auto mb-4"
+                className="h-24 w-auto"
               />
             </div>
 
@@ -966,9 +966,9 @@ function App() {
 
                 <div className="flex justify-center mb-6">
                   <img 
-                    src="/logo01.png" 
+                    src="/kw-logo.png" 
                     alt="KW Advocacia" 
-                    className="h-24 w-auto mx-auto mb-6"
+                    className="h-20 w-auto mx-auto mb-6"
                   />
                 </div>
 

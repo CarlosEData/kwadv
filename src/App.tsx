@@ -48,10 +48,10 @@ const openWhatsApp = () => {
 
 // Dados das modalidades com preços (ocultos da interface principal)
 const modalityDetails = {
-  'Essencial': { price: '97', description: 'Plano básico com 2 consultas mensais' },
-  'Avançado': { price: '159', description: 'Plano intermediário com 4 consultas mensais' },
-  'Premium': { price: '249', description: 'Plano completo com consultas ilimitadas' },
-  'Familiar': { price: '389', description: 'Cobertura completa para toda família' }
+  'Essencial': { price: '97', description: 'Indicado para: Profissionais que querem suporte jurídico preventivo e acesso inicial à estrutura' },
+  'Avançado': { price: '159', description: 'Indicado para: Quem deseja acompanhamento jurídico mais próximo e prioridade no atendimento.' },
+  'Premium': { price: '249', description: 'Indicado para: Profissionais que querem cobertura jurídica ampla e atendimento personalizado.' },
+  'Familiar': { price: '389', description: 'Proteção Jurídica para Quem Você Ama. Cônjuge ou companheiro(a) Até 2 filhos ou dependentes diretos Possibilidade de incluir mais dependentes por R$ 49/mês por pessoa adicional' }
 };
 
 function App() {
@@ -199,37 +199,45 @@ function App() {
     {
       name: 'Essencial',
       benefits: [
-        '2 consultas mensais',
-        'Atendimento por WhatsApp',
-        '1 contrato analisado',
-        'Suporte básico'
+        'Consultas jurídicas ilimitadas por WhatsApp ou e-mail',
+        '1 atendimento ao vivo por mês (online)',
+        'Análise, revisão e confecção de 1 contrato por mês',
+        '10% de desconto em ações judiciais'
       ]
     },
     {
       name: 'Avançado',
       benefits: [
-        '4 consultas mensais',
-        'Atendimento prioritário',
-        '3 contratos analisados',
-        'Consultoria especializada'
+        'Consultas jurídicas ilimitadas por WhatsApp ou e-mail',
+        '3 atendimentos ao vivo por mês (online)',
+        '20% de desconto em ações judiciais',
+        'Orientação para elaboração de documentos simples (ex: notificações, contratos de prestação de serviço)',
+        'Análise, revisão e confecções de 3 contratos por mês',
+        'Até 2 demandas por ano incluídas no plano: Propositura de ações judiciais cíveis, trabalhistas, previdenciárias e de família (exceto inventário) e Defesa em ações movidas contra o associado'
+
       ]
     },
     {
       name: 'Premium',
       benefits: [
-        'Consultas ilimitadas',
-        'Atendimento VIP',
-        'Contratos ilimitados',
-        'Assessoria completa'
+        'Consultas jurídicas ilimitadas por WhatsApp ou e-mail ',
+        '5 atendimentos ao vivo por mês (online)',
+        '30% de desconto em ações judiciais',
+        'Orientação para elaboração de documentos simples (ex: notificações, contratos de prestação de serviço)',
+        'Análise, revisão e confecções de 5 contratos por mês ',
+        'Até 5 demandas por ano incluídas no plano: Propositura de ações judiciais cíveis, trabalhistas, previdenciárias e de família (exceto inventário) e Defesa em ações movidas contra o associado'
+
       ]
     },
     {
       name: 'Familiar',
       benefits: [
-        'Cobertura familiar completa',
-        'Atendimento 24/7',
-        'Todos os serviços inclusos',
-        'Suporte especializado'
+        'Consultas jurídicas ilimitadas por WhatsApp ou e-mail ',
+        '5 atendimentos ao vivo por mês (online)',
+        '30% de desconto em ações judiciais',
+        'Orientação para elaboração de documentos simples (ex: notificações, contratos de prestação de serviço)',
+        'Análise, revisão e confecções de 5 contratos por mês ',
+        'Até 5 demandas por ano incluídas no plano: Propositura de ações judiciais cíveis, trabalhistas, previdenciárias e de família (exceto inventário) e Defesa em ações movidas contra o associado'
       ]
     }
   ];
@@ -267,7 +275,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img 
-                  src="/Inserir um subtítulo (5).png" 
+                  src="Inserir um subtítulo.png" 
                   alt="KW Advocacia" 
                   className="h-12 w-auto"
                 />

@@ -30,6 +30,13 @@ import {
   Hammer,
   CreditCard,
   HandHeart,
+  HelpCircle,
+  LockIcon,
+  DollarSign,
+  ScaleIcon,
+  PhoneCall,
+  Gift,
+  Users as UsersIcon,
 } from "lucide-react";
 
 const whatsappNumber = "5521998417061";
@@ -294,6 +301,61 @@ function App() {
     },
   ];
 
+  const newFaqs = [
+    {
+      question: "Mas eu não estou com nenhum problema agora. Por que teria um plano jurídico?",
+      answer:
+        "Porque o plano jurídico atua preventivamente. Assim como você tem um plano de saúde mesmo quando está bem, o plano jurídico resolve questões antes que virem dores de cabeça — e te orienta em qualquer dúvida do dia a dia: contratos, dívidas, trabalho, condomínio, vizinho, bancos, etc.",
+    },
+    {
+      question: "Esse plano cobre tudo? E se eu precisar entrar com um processo?",
+      answer:
+        "Depende do plano escolhido. No plano básico, você tem orientação completa e consultas ilimitadas. Nos planos mais completos, você tem direito a ações judiciais inclusas, com honorários contratuais pagos pelo plano (exceto taxas e custas).",
+    },
+    {
+      question: "E se eu quiser cancelar depois?",
+      answer:
+        "Você pode cancelar quando quiser, sem fidelidade. Mas atenção: quanto mais tempo você fica, mais benefícios você acumula.",
+    },
+    {
+      question: "Qual a diferença entre esse plano e contratar um advogado direto?",
+      answer:
+        "O plano jurídico te dá acesso contínuo e imediato a um consultor jurídico. Você não precisa pagar toda vez que tiver uma dúvida ou para revisar um documento — é tudo incluído. Além disso, sai muito mais barato do que contratar por demanda.",
+    },
+    {
+      question: "Vocês resolvem problemas de que tipo?",
+      answer:
+        "De tudo que faz parte da sua vida:\n- Dúvidas trabalhistas\n- Questões familiares (divórcio, guarda, pensão)\n- Direito do consumidor\n- Cobrança indevida\n- Nome sujo injustamente\n- Dificuldade com banco, aluguel, vizinhos, contratos\n- Ações judiciais (conforme plano)\n- Orientações, documentos, multas etc.",
+    },
+  ];
+
+  const advantages = [
+    {
+      icon: <LockIcon className="text-gold" size={32} />,
+      text: "Segurança jurídica todos os dias. Você tem um advogado sempre pronto para tirar suas dúvidas e te orientar, sem pagar consulta toda vez.",
+    },
+    {
+      icon: <DollarSign className="text-gold" size={32} />,
+      text: "Economia real. Você planeja seu orçamento com um valor fixo mensal e tem suporte jurídico sempre que precisar.",
+    },
+    {
+      icon: <ScaleIcon className="text-gold" size={32} />,
+      text: "Acesso à Justiça garantido. Com o plano, você tem um time ao seu lado — orientando preventivamente e atuando quando necessário.",
+    },
+    {
+      icon: <PhoneCall className="text-gold" size={32} />,
+      text: "Atendimento rápido, direto e sem enrolação. Nada de espera ou burocracia. Atendimento jurídico real e exclusivo.",
+    },
+    {
+      icon: <Gift className="text-gold" size={32} />,
+      text: "Benefícios acumulativos. Quanto mais tempo no plano, mais vantagens você conquista.",
+    },
+    {
+      icon: <UsersIcon className="text-gold" size={32} />,
+      text: "Proteção para sua família também. Alguns planos cobrem dependentes e familiares direto, sem complicações.",
+    },
+  ];
+
   // Renderização condicional baseada na página atual
   if (currentPage === "login") {
     return (
@@ -304,7 +366,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img
-                  src="Inserir um subtítulo.png"
+                  src="/kw-logo.png"
                   alt="KW Advocacia"
                   className="h-12 w-auto"
                 />
@@ -393,7 +455,7 @@ function App() {
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center">
                 <img
-                  src="/logo kw correta.png"
+                  src="/kw-logo.png"
                   alt="KW Advocacia"
                   className="h-12 w-auto"
                 />
@@ -514,6 +576,87 @@ function App() {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* New FAQ Section: Perguntas Frequentes sobre os Planos Jurídicos */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black">
+                💬 Perguntas Frequentes sobre os Planos Jurídicos
+              </h2>
+              <p className="text-xl text-gray-600">
+                Entenda mais sobre como nossos planos podem ajudar você
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {newFaqs.map((faq, index) => (
+                <div
+                  key={index}
+ جساء
+                  className="bg-white rounded-lg border border-gray-200 shadow-sm"
+                >
+                  <button
+                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors"
+                    onClick={() => toggleFaq(index + faqs.length)}
+                  >
+                    <div className="flex items-center">
+                      <HelpCircle className="text-black mr-3 flex-shrink-0" size={20} />
+                      <span className="font-semibold text-black">
+                        {faq.question}
+                      </span>
+                    </div>
+                    {openFaq === index + faqs.length ? (
+                      <ChevronUp className="text-black" size={20} />
+                    ) : (
+                      <ChevronDown className="text-black" size={20} />
+                    )}
+                  </button>
+                  {openFaq === index + faqs.length && (
+                    <div className="px-6 pb-4">
+                      <p className="text-gray-600 whitespace-pre-line">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* New Advantages Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black">
+                ✅ Vantagens de ter um Plano Jurídico
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Conheça os benefícios de contar com nosso suporte jurídico contínuo
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {advantages.map((advantage, index) => (
+                <div
+                  key={index}
+                  className="flex items-start space-x-4"
+                >
+                  <div className="flex-shrink-0">{advantage.icon}</div>
+                  <p className="text-gray-600">{advantage.text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <button
+                onClick={() => navigateTo("all-modalities")}
+                className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center gap-2"
+              >
+                Ver Planos
+              </button>
             </div>
           </div>
         </section>
@@ -642,6 +785,7 @@ function App() {
               <div className="text-center">
                 <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Phone className="text-gold" size={32} />
+ inspira
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gold">
                   Telefone
@@ -978,501 +1122,501 @@ function App() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Modalidades Section */}
-      <section
-        id="modalidades"
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
-              Modalidade de Acompanhamento Jurídico
-            </h2>
-            <div className="mt-8">
+        {/* Modalidades Section */}
+        <section
+          id="modalidades"
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
+                Modalidade de Acompanhamento Jurídico
+              </h2>
+              <div className="mt-8">
+                <button
+                  onClick={() => navigateTo("login")}
+                  className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center gap-2"
+                >
+                  <User size={20} />
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
+                Perguntas Frequentes
+              </h2>
+              <p className="text-xl text-gray-300">
+                Tire suas dúvidas sobre nossos serviços
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-900 rounded-lg border border-gold/20"
+                >
+                  <button
+                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors"
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <span className="font-semibold text-gold">
+                      {faq.question}
+                    </span>
+                    {openFaq === index ? (
+                      <ChevronUp className="text-gold" size={20} />
+                    ) : (
+                      <ChevronDown className="text-gold" size={20} />
+                    )}
+                  </button>
+                  {openFaq === index && (
+                    <div className="px-6 pb-4">
+                      <p className="text-gray-300">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contato" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
+                Entre em Contato
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Estamos prontos para ajudar você com suas questões jurídicas
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Phone className="text-gold" size={32} />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-gold">Telefone</h3>
+                <p className="text-gray-300">(21) 99841-7061</p>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Mail className="text-gold" size={32} />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-gold">E-mail</h3>
+                <p className="text-gray-300">contato@kwadvocacia.com.br</p>
+              </div>
+
+              <div className="text-center">
+                <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Clock className="text-gold" size={32} />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-gold">Horário</h3>
+                <p className="text-gray-300">Seg-Sex: 9h às 18h</p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
               <button
-                onClick={() => navigateTo("login")}
+                onClick={openWhatsApp}
                 className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center gap-2"
               >
-                <User size={20} />
-                Login
+                <MessageCircle size={20} />
+                Falar no WhatsApp
               </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
-              Perguntas Frequentes
-            </h2>
-            <p className="text-xl text-gray-300">
-              Tire suas dúvidas sobre nossos serviços
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-gray-900 rounded-lg border border-gold/20"
-              >
-                <button
-                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors"
-                  onClick={() => toggleFaq(index)}
-                >
-                  <span className="font-semibold text-gold">
-                    {faq.question}
-                  </span>
-                  {openFaq === index ? (
-                    <ChevronUp className="text-gold" size={20} />
-                  ) : (
-                    <ChevronDown className="text-gold" size={20} />
-                  )}
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-4">
-                    <p className="text-gray-300">{faq.answer}</p>
+        {/* Footer */}
+        <footer className="bg-black border-t border-gold/20 py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="md:col-span-2">
+                <img
+                  src="/kw-logo.png"
+                  alt="KW SOCIEDADE DE ADVOGADOS"
+                  className="h-24 w-auto mb-4"
+                />
+                <p className="text-gray-400 mb-4">
+                  Soluções jurídicas modernas e acessíveis para você e sua
+                  família.
+                </p>
+                <div className="flex space-x-4">
+                  <div className="bg-gold/10 rounded-full w-10 h-10 flex items-center justify-center">
+                    <Heart className="text-gold" size={20} />
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contato" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
-              Entre em Contato
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Estamos prontos para ajudar você com suas questões jurídicas
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Phone className="text-gold" size={32} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-gold">Telefone</h3>
-              <p className="text-gray-300">(21) 99841-7061</p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Mail className="text-gold" size={32} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-gold">E-mail</h3>
-              <p className="text-gray-300">contato@kwadvocacia.com.br</p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Clock className="text-gold" size={32} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-gold">Horário</h3>
-              <p className="text-gray-300">Seg-Sex: 9h às 18h</p>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <button
-              onClick={openWhatsApp}
-              className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center gap-2"
-            >
-              <MessageCircle size={20} />
-              Falar no WhatsApp
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-black border-t border-gold/20 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <img
-                src="/kw-logo.png"
-                alt="KW SOCIEDADE DE ADVOGADOS"
-                className="h-24 w-auto mb-4"
-              />
-              <p className="text-gray-400 mb-4">
-                Soluções jurídicas modernas e acessíveis para você e sua
-                família.
-              </p>
-              <div className="flex space-x-4">
-                <div className="bg-gold/10 rounded-full w-10 h-10 flex items-center justify-center">
-                  <Heart className="text-gold" size={20} />
                 </div>
               </div>
-            </div>
 
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-gold">
-                ÁREAS DE ATUAÇÃO
-              </h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Direito Cível</li>
-                <li>Direito do Consumidor</li>
-                <li>Direito de Família e Sucessões</li>
-                <li>Direito Trabalhista</li>
-                <li>Direito Previdenciário</li>
-                <li>Contratos e Negociações</li>
-                <li>Soluções Extrajudiciais</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-gold">Contato</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>(21) 99841-7061</li>
-                <li>contato@kwadvocacia.com.br</li>
-                <li>suporte@kwadvocacia.com.br</li>
-                <li>Seg-Sex: 9h às 18h</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gold/20 mt-8 pt-8 text-center text-gray-400">
-            <p>
-              &copy; 2024 KW SOCIEDADE DE ADVOGADOS. Todos os direitos
-              reservados.
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Modal de Login */}
-      {showLoginModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
-            <div className="mb-6">
-              <h2 className="text-2xl font-serif text-white text-center">
-                Área do Cliente
-              </h2>
-              <button
-                onClick={() => setShowLoginModal(false)}
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="flex justify-center mb-6">
-              <img
-                src="/kw-logo.png"
-                alt="KW Advocacia"
-                className="h-20 w-auto"
-              />
-            </div>
-
-            <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  E-mail ou CPF
-                </label>
-                <input
-                  type="text"
-                  value={loginData.emailOrCpf}
-                  onChange={(e) =>
-                    handleLoginInputChange("emailOrCpf", e.target.value)
-                  }
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Digite seu e-mail ou CPF"
-                  required
-                />
+                <h4 className="text-lg font-semibold mb-4 text-gold">
+                  ÁREAS DE ATUAÇÃO
+                </h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>Direito Cível</li>
+                  <li>Direito do Consumidor</li>
+                  <li>Direito de Família e Sucessões</li>
+                  <li>Direito Trabalhista</li>
+                  <li>Direito Previdenciário</li>
+                  <li>Contratos e Negociações</li>
+                  <li>Soluções Extrajudiciais</li>
+                </ul>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Senha
-                </label>
-                <input
-                  type="password"
-                  value={loginData.password}
-                  onChange={(e) =>
-                    handleLoginInputChange("password", e.target.value)
-                  }
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Digite sua senha"
-                  required
-                />
-                {loginError && (
-                  <p className="text-red-400 text-sm mt-2">{loginError}</p>
-                )}
+                <h4 className="text-lg font-semibold mb-4 text-gold">Contato</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>(21) 99841-7061</li>
+                  <li>contato@kwadvocacia.com.br</li>
+                  <li>suporte@kwadvocacia.com.br</li>
+                  <li>Seg-Sex: 9h às 18h</li>
+                </ul>
               </div>
+            </div>
 
-              <button
-                type="submit"
-                disabled={isLoggingIn}
-                className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoggingIn ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent"></div>
-                    Verificando...
-                  </>
-                ) : (
-                  <>
-                    <Lock size={18} />
-                    Entrar
-                  </>
-                )}
-              </button>
-            </form>
+            <div className="border-t border-gold/20 mt-8 pt-8 text-center text-gray-400">
+              <p>
+                &copy; 2024 KW SOCIEDADE DE ADVOGADOS. Todos os direitos
+                reservados.
+              </p>
+            </div>
+          </div>
+        </footer>
 
-            <div className="mt-6 space-y-3 text-center">
-              <button className="text-gold hover:text-yellow-400 transition-colors text-sm">
-                Esqueci minha senha
-              </button>
-              <div className="text-gray-400 text-sm">
-                Ainda não tem cadastro?{" "}
+        {/* Modal de Login */}
+        {showLoginModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
+              <div className="mb-6">
+                <h2 className="text-2xl font-serif text-white text-center">
+                  Área do Cliente
+                </h2>
                 <button
-                  onClick={() => {
-                    setShowLoginModal(false);
-                    setShowRegisterModal(true);
-                  }}
-                  className="text-gold cursor-pointer hover:text-yellow-400 transition-colors"
+                  onClick={() => setShowLoginModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Cadastre-se Aqui
+                  <X size={24} />
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
 
-      {/* Modal de Cadastro */}
-      {showRegisterModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-serif text-white">
-                Solicitar Cadastro
-              </h2>
-              <button
-                onClick={() => setShowRegisterModal(false)}
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="flex justify-center mb-6">
-              <img
-                src="/kw-logo.png"
-                alt="KW Sociedade de Advogados"
-                className="h-24 w-auto"
-              />
-            </div>
-
-            <form onSubmit={handleRegisterSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Nome Completo
-                </label>
-                <input
-                  type="text"
-                  value={registerData.name}
-                  onChange={(e) =>
-                    handleRegisterInputChange("name", e.target.value)
-                  }
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Digite seu nome completo"
-                  required
+              <div className="flex justify-center mb-6">
+                <img
+                  src="/kw-logo.png"
+                  alt="KW Advocacia"
+                  className="h-20 w-auto"
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  E-mail
-                </label>
-                <input
-                  type="email"
-                  value={registerData.email}
-                  onChange={(e) =>
-                    handleRegisterInputChange("email", e.target.value)
-                  }
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Digite seu e-mail"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  CPF
-                </label>
-                <input
-                  type="text"
-                  value={registerData.cpf}
-                  onChange={(e) =>
-                    handleRegisterInputChange("cpf", e.target.value)
-                  }
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="000.000.000-00"
-                  maxLength={11}
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
-              >
-                <UserCheck size={18} />
-                Solicitar Cadastro
-              </button>
-            </form>
-
-            <div className="mt-6 text-center">
-              <p className="text-gray-400 text-sm">
-                Sua solicitação será processada em até 24 horas úteis.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal de Verificação CPF */}
-      {showCPFModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
-            {!showModalityDetails ? (
-              <>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-serif text-white">
-                    Verificação de Cliente
-                  </h2>
-                  <button
-                    onClick={closeCPFModal}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
-
-                <div className="flex justify-center mb-6">
-                  <img
-                    src="/kw-logo.png"
-                    alt="KW Advocacia"
-                    className="h-20 w-auto mx-auto mb-6"
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    E-mail ou CPF
+                  </label>
+                  <input
+                    type="text"
+                    value={loginData.emailOrCpf}
+                    onChange={(e) =>
+                      handleLoginInputChange("emailOrCpf", e.target.value)
+                    }
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="Digite seu e-mail ou CPF"
+                    required
                   />
                 </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      CPF
-                    </label>
-                    <input
-                      type="text"
-                      value={cpfInput}
-                      onChange={(e) => setCpfInput(e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                      placeholder="000.000.000-00"
-                      maxLength={11}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Senha
-                    </label>
-                    <input
-                      type="password"
-                      value={cpfModalPassword}
-                      onChange={(e) => setCpfModalPassword(e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
-                      placeholder="Digite sua senha"
-                    />
-                    {cpfError && (
-                      <p className="text-red-400 text-sm mt-2">{cpfError}</p>
-                    )}
-                  </div>
-
-                  <button
-                    onClick={handleCPFSubmit}
-                    className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors"
-                  >
-                    Consultar
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-serif text-white">
-                    Modalidade {selectedModality}
-                  </h2>
-                  <button
-                    onClick={closeCPFModal}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
-
-                <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-gold mb-2">
-                    R${" "}
-                    {
-                      modalityDetails[
-                        selectedModality as keyof typeof modalityDetails
-                      ]?.price
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Senha
+                  </label>
+                  <input
+                    type="password"
+                    value={loginData.password}
+                    onChange={(e) =>
+                      handleLoginInputChange("password", e.target.value)
                     }
-                  </div>
-                  <div className="text-gray-400">por mês</div>
-                  <div className="text-sm text-gray-500 mt-2">
-                    {
-                      modalityDetails[
-                        selectedModality as keyof typeof modalityDetails
-                      ]?.description
-                    }
-                  </div>
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  {modalities
-                    .find((p) => p.name === selectedModality)
-                    ?.benefits.map((benefit, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center text-gray-300"
-                      >
-                        <CheckCircle
-                          className="text-gold mr-2 flex-shrink-0"
-                          size={16}
-                        />
-                        {benefit}
-                      </div>
-                    ))}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="Digite sua senha"
+                    required
+                  />
+                  {loginError && (
+                    <p className="text-red-400 text-sm mt-2">{loginError}</p>
+                  )}
                 </div>
 
                 <button
-                  onClick={openWhatsApp}
+                  type="submit"
+                  disabled={isLoggingIn}
+                  className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoggingIn ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent"></div>
+                      Verificando...
+                    </>
+                  ) : (
+                    <>
+                      <Lock size={18} />
+                      Entrar
+                    </>
+                  )}
+                </button>
+              </form>
+
+              <div className="mt-6 space-y-3 text-center">
+                <button className="text-gold hover:text-yellow-400 transition-colors text-sm">
+                  Esqueci minha senha
+                </button>
+                <div className="text-gray-400 text-sm">
+                  Ainda não tem cadastro?{" "}
+                  <button
+                    onClick={() => {
+                      setShowLoginModal(false);
+                      setShowRegisterModal(true);
+                    }}
+                    className="text-gold cursor-pointer hover:text-yellow-400 transition-colors"
+                  >
+                    Cadastre-se Aqui
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Cadastro */}
+        {showRegisterModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-serif text-white">
+                  Solicitar Cadastro
+                </h2>
+                <button
+                  onClick={() => setShowRegisterModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="flex justify-center mb-6">
+                <img
+                  src="/kw-logo.png"
+                  alt="KW Sociedade de Advogados"
+                  className="h-24 w-auto"
+                />
+              </div>
+
+              <form onSubmit={handleRegisterSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Nome Completo
+                  </label>
+                  <input
+                    type="text"
+                    value={registerData.name}
+                    onChange={(e) =>
+                      handleRegisterInputChange("name", e.target.value)
+                    }
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="Digite seu nome completo"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    E-mail
+                  </label>
+                  <input
+                    type="email"
+                    value={registerData.email}
+                    onChange={(e) =>
+                      handleRegisterInputChange("email", e.target.value)
+                    }
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="Digite seu e-mail"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    CPF
+                  </label>
+                  <input
+                    type="text"
+                    value={registerData.cpf}
+                    onChange={(e) =>
+                      handleRegisterInputChange("cpf", e.target.value)
+                    }
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                    placeholder="000.000.000-00"
+                    maxLength={11}
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
                   className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
                 >
-                  <MessageCircle size={18} />
-                  Quero Esta Modalidade
+                  <UserCheck size={18} />
+                  Solicitar Cadastro
                 </button>
-              </>
-            )}
+              </form>
+
+              <div className="mt-6 text-center">
+                <p className="text-gray-400 text-sm">
+                  Sua solicitação será processada em até 24 horas úteis.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
-  );
+        )}
+
+        {/* Modal de Verificação CPF */}
+        {showCPFModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-md border border-gold/20 shadow-2xl">
+              {!showModalityDetails ? (
+                <>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-serif text-white">
+                      Verificação de Cliente
+                    </h2>
+                    <button
+                      onClick={closeCPFModal}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+
+                  <div className="flex justify-center mb-6">
+                    <img
+                      src="/kw-logo.png"
+                      alt="KW Advocacia"
+                      className="h-20 w-auto mx-auto mb-6"
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        CPF
+                      </label>
+                      <input
+                        type="text"
+                        value={cpfInput}
+                        onChange={(e) => setCpfInput(e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                        placeholder="000.000.000-00"
+                        maxLength={11}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Senha
+                      </label>
+                      <input
+                        type="password"
+                        value={cpfModalPassword}
+                        onChange={(e) => setCpfModalPassword(e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold transition-colors"
+                        placeholder="Digite sua senha"
+                      />
+                      {cpfError && (
+                        <p className="text-red-400 text-sm mt-2">{cpfError}</p>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={handleCPFSubmit}
+                      className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors"
+                    >
+                      Consultar
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-serif text-white">
+                      Modalidade {selectedModality}
+                    </h2>
+                    <button
+                      onClick={closeCPFModal}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+
+                  <div className="text-center mb-6">
+                    <div className="text-4xl font-bold text-gold mb-2">
+                      R${" "}
+                      {
+                        modalityDetails[
+                          selectedModality as keyof typeof modalityDetails
+                        ]?.price
+                      }
+                    </div>
+                    <div className="text-gray-400">por mês</div>
+                    <div className="text-sm text-gray-500 mt-2">
+                      {
+                        modalityDetails[
+                          selectedModality as keyof typeof modalityDetails
+                        ]?.description
+                      }
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    {modalities
+                      .find((p) => p.name === selectedModality)
+                      ?.benefits.map((benefit, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center text-gray-300"
+                        >
+                          <CheckCircle
+                            className="text-gold mr-2 flex-shrink-0"
+                            size={16}
+                          />
+                          {benefit}
+                        </div>
+                      ))}
+                  </div>
+
+                  <button
+                    onClick={openWhatsApp}
+                    className="w-full bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle size={18} />
+                    Quero Esta Modalidade
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;

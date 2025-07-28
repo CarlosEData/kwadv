@@ -397,7 +397,7 @@ function App() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
-                <HelpCircle className="mr-2" size={32} /> 💬 Perguntas que as pessoas costumam ter ao pensar em contratar um plano jurídico:
+                <HelpCircle className="mr-2" size={32} /> Perguntas que as pessoas costumam ter ao pensar em contratar um plano jurídico:
               </h2>
               <p className="text-xl text-gray-600">
                 Entenda mais sobre como nossos planos podem ajudar você
@@ -406,24 +406,24 @@ function App() {
             <div className="space-y-4">
               {[
                 {
-                  question: "❓1. “Mas eu não estou com nenhum problema agora. Por que teria um plano jurídico?”",
-                  answer: "🔹 Porque o plano jurídico atua preventivamente. Assim como você tem um plano de saúde mesmo quando está bem, o plano jurídico resolve questões antes que virem dores de cabeça — e te orienta em qualquer dúvida do dia a dia: contratos, dívidas, trabalho, condomínio, vizinho, bancos, etc.",
+                  question: "1. “Mas eu não estou com nenhum problema agora. Por que teria um plano jurídico?”",
+                  answer: " Porque o plano jurídico atua preventivamente. Assim como você tem um plano de saúde mesmo quando está bem, o plano jurídico resolve questões antes que virem dores de cabeça — e te orienta em qualquer dúvida do dia a dia: contratos, dívidas, trabalho, condomínio, vizinho, bancos, etc.",
                 },
                 {
-                  question: "❓2. “Esse plano cobre tudo? E se eu precisar entrar com um processo?”",
-                  answer: "🔹 Depende do plano escolhido. No plano básico, você tem orientação completa e consultas ilimitadas. Nos planos mais completos, você tem direito a ações judiciais inclusas, com honorários contratuais pagos pelo plano (exceto taxas e custas).",
+                  question: "2. “Esse plano cobre tudo? E se eu precisar entrar com um processo?”",
+                  answer: " Depende do plano escolhido. No plano básico, você tem orientação completa e consultas ilimitadas. Nos planos mais completos, você tem direito a ações judiciais inclusas, com honorários contratuais pagos pelo plano (exceto taxas e custas).",
                 },
                 {
-                  question: "❓3. “E se eu quiser cancelar depois?”",
-                  answer: "🔹 Você pode cancelar quando quiser, sem fidelidade. Mas atenção: quanto mais tempo você fica, mais benefícios você acumula.",
+                  question: "3. “E se eu quiser cancelar depois?”",
+                  answer: " Você pode cancelar quando quiser, sem fidelidade. Mas atenção: quanto mais tempo você fica, mais benefícios você acumula.",
                 },
                 {
-                  question: "❓4. “Qual a diferença entre esse plano e contratar um advogado direto?”",
-                  answer: "🔹 O plano jurídico te dá acesso contínuo e imediato a um consultor jurídico. Você não precisa pagar toda vez que tiver uma dúvida ou para revisar um documento — é tudo incluído. Além disso, sai muito mais barato do que contratar por demanda.",
+                  question: "4. “Qual a diferença entre esse plano e contratar um advogado direto?”",
+                  answer: " O plano jurídico te dá acesso contínuo e imediato a um consultor jurídico. Você não precisa pagar toda vez que tiver uma dúvida ou para revisar um documento — é tudo incluído. Além disso, sai muito mais barato do que contratar por demanda.",
                 },
                 {
-                  question: "❓5. “Vocês resolvem problemas de que tipo?”",
-                  answer: "🔹 De tudo que faz parte da sua vida: • Dúvidas trabalhistas • Questões familiares (divórcio, guarda, pensão) • Direito do consumidor • Cobrança indevida • Nome sujo injustamente • Dificuldade com banco, aluguel, vizinhos, contratos • Ações judiciais (conforme plano) • Orientações, documentos, multas etc.",
+                  question: "5. “Vocês resolvem problemas de que tipo?”",
+                  answer: " De tudo que faz parte da sua vida: • Dúvidas trabalhistas • Questões familiares (divórcio, guarda, pensão) • Direito do consumidor • Cobrança indevida • Nome sujo injustamente • Dificuldade com banco, aluguel, vizinhos, contratos • Ações judiciais (conforme plano) • Orientações, documentos, multas etc.",
                 },
               ].map((faq, index) => (
                 <div
@@ -458,7 +458,7 @@ function App() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
-                <CheckCircle className="mr-2" size={32} /> ✅ VANTAGENS:
+                <CheckCircle className="mr-2" size={32} />  VANTAGENS:
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Conheça os benefícios de contar com nosso suporte jurídico contínuo
@@ -468,27 +468,27 @@ function App() {
               {[
                 {
                   icon: <Lock className="text-gold" size={32} />,
-                  text: "🔐 1. Segurança jurídica todos os dias\nVocê tem um advogado sempre pronto para tirar suas dúvidas e te orientar, sem pagar consulta toda vez.",
+                  text: " 1. Segurança jurídica todos os dias\nVocê tem um advogado sempre pronto para tirar suas dúvidas e te orientar, sem pagar consulta toda vez.",
                 },
                 {
                   icon: <DollarSign className="text-gold" size={32} />,
-                  text: "💰 2. Economia real\nEm vez de arcar com honorários altos e imprevistos quando surgir um problema, você planeja seu orçamento com um valor fixo mensal e tem suporte jurídico sempre que precisar.",
+                  text: " 2. Economia real\nEm vez de arcar com honorários altos e imprevistos quando surgir um problema, você planeja seu orçamento com um valor fixo mensal e tem suporte jurídico sempre que precisar.",
                 },
                 {
                   icon: <Scale className="text-gold" size={32} />,
-                  text: "⚖️ 3. Acesso à Justiça garantido\nCom o plano, você tem um time ao seu lado — orientando preventivamente no dia a dia e pronto para atuar formalmente quando necessário. Acesso à Justiça com segurança, estratégia e respaldo profissional.",
+                  text: " 3. Acesso à Justiça garantido\nCom o plano, você tem um time ao seu lado — orientando preventivamente no dia a dia e pronto para atuar formalmente quando necessário. Acesso à Justiça com segurança, estratégia e respaldo profissional.",
                 },
                 {
                   icon: <Phone className="text-gold" size={32} />,
-                  text: "📞 4. Atendimento rápido, direto e sem enrolação\nNada de espera ou burocracia. Você tem um canal exclusivo com atendimento jurídico de verdade, sempre.",
+                  text: " 4. Atendimento rápido, direto e sem enrolação\nNada de espera ou burocracia. Você tem um canal exclusivo com atendimento jurídico de verdade, sempre.",
                 },
                 {
                   icon: <Gift className="text-gold" size={32} />,
-                  text: "🎁 5. Benefícios acumulativos\nQuanto mais tempo no plano, mais vantagens.",
+                  text: " 5. Benefícios acumulativos\nQuanto mais tempo no plano, mais vantagens.",
                 },
                 {
                   icon: <Users className="text-gold" size={32} />,
-                  text: "👨‍👩‍👧 6. Proteção para sua família também\nPlanos com cobertura estendida permitem que seus familiares também tenham apoio jurídico direto, sem burocracia, sempre que precisarem.",
+                  text: " 6. Proteção para sua família também\nPlanos com cobertura estendida permitem que seus familiares também tenham apoio jurídico direto, sem burocracia, sempre que precisarem.",
                 },
               ].map((advantage, index) => (
                 <div

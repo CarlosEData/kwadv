@@ -406,24 +406,24 @@ function App() {
             <div className="space-y-4">
               {[
                 {
-                  question: "1. “Mas eu não estou com nenhum problema agora. Por que teria um plano jurídico?”",
-                  answer: " Porque o plano jurídico atua preventivamente. Assim como você tem um plano de saúde mesmo quando está bem, o plano jurídico resolve questões antes que virem dores de cabeça — e te orienta em qualquer dúvida do dia a dia: contratos, dívidas, trabalho, condomínio, vizinho, bancos, etc.",
+                  question: "1. Mas eu não estou com nenhum problema agora. Por que teria um plano jurídico?",
+                  answer: "Porque o plano jurídico atua preventivamente. Assim como você tem um plano de saúde mesmo quando está bem, o plano jurídico resolve questões antes que virem dores de cabeça — e te orienta em qualquer dúvida do dia a dia: contratos, dívidas, trabalho, condomínio, vizinho, bancos, etc.",
                 },
                 {
-                  question: "2. “Esse plano cobre tudo? E se eu precisar entrar com um processo?”",
-                  answer: " Depende do plano escolhido. No plano básico, você tem orientação completa e consultas ilimitadas. Nos planos mais completos, você tem direito a ações judiciais inclusas, com honorários contratuais pagos pelo plano (exceto taxas e custas).",
+                  question: "2. Esse plano cobre tudo? E se eu precisar entrar com um processo?",
+                  answer: "Depende do plano escolhido. No plano básico, você tem orientação completa e consultas ilimitadas. Nos planos mais completos, você tem direito a ações judiciais inclusas, com honorários contratuais pagos pelo plano (exceto taxas e custas).",
                 },
                 {
-                  question: "3. “E se eu quiser cancelar depois?”",
-                  answer: " Você pode cancelar quando quiser, sem fidelidade. Mas atenção: quanto mais tempo você fica, mais benefícios você acumula.",
+                  question: "3. E se eu quiser cancelar depois?",
+                  answer: "Você pode cancelar quando quiser, sem fidelidade. Mas atenção: quanto mais tempo você fica, mais benefícios você acumula.",
                 },
                 {
-                  question: "4. “Qual a diferença entre esse plano e contratar um advogado direto?”",
-                  answer: " O plano jurídico te dá acesso contínuo e imediato a um consultor jurídico. Você não precisa pagar toda vez que tiver uma dúvida ou para revisar um documento — é tudo incluído. Além disso, sai muito mais barato do que contratar por demanda.",
+                  question: "4. Qual a diferença entre esse plano e contratar um advogado direto?",
+                  answer: "O plano jurídico te dá acesso contínuo e imediato a um consultor jurídico. Você não precisa pagar toda vez que tiver uma dúvida ou para revisar um documento — é tudo incluído. Além disso, sai muito mais barato do que contratar por demanda.",
                 },
                 {
-                  question: "5. “Vocês resolvem problemas de que tipo?”",
-                  answer: " De tudo que faz parte da sua vida: • Dúvidas trabalhistas • Questões familiares (divórcio, guarda, pensão) • Direito do consumidor • Cobrança indevida • Nome sujo injustamente • Dificuldade com banco, aluguel, vizinhos, contratos • Ações judiciais (conforme plano) • Orientações, documentos, multas etc.",
+                  question: "5. Vocês resolvem problemas de que tipo?",
+                  answer: "De tudo que faz parte da sua vida: Dúvidas trabalhistas Questões familiares (divórcio, guarda, pensão) Direito do consumidor Cobrança indevida Nome sujo injustamente Dificuldade com banco, aluguel, vizinhos, contratos Ações judiciais (conforme plano) Orientações, documentos, multas etc.",
                 },
               ].map((faq, index) => (
                 <div
@@ -458,7 +458,7 @@ function App() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
-                <CheckCircle className="mr-2" size={32} />  VANTAGENS:
+                <CheckCircle className="mr-2" size={32} /> VANTAGENS:
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Conheça os benefícios de contar com nosso suporte jurídico contínuo
@@ -468,27 +468,33 @@ function App() {
               {[
                 {
                   icon: <Lock className="text-gold" size={32} />,
-                  text: " 1. Segurança jurídica todos os dias\nVocê tem um advogado sempre pronto para tirar suas dúvidas e te orientar, sem pagar consulta toda vez.",
+                  title: "1. Segurança jurídica todos os dias",
+                  text: "Você tem um advogado sempre pronto para tirar suas dúvidas e te orientar, sem pagar consulta toda vez.",
                 },
                 {
                   icon: <DollarSign className="text-gold" size={32} />,
-                  text: " 2. Economia real\nEm vez de arcar com honorários altos e imprevistos quando surgir um problema, você planeja seu orçamento com um valor fixo mensal e tem suporte jurídico sempre que precisar.",
+                  title: "2. Economia real",
+                  text: "Em vez de arcar com honorários altos e imprevistos quando surgir um problema, você planeja seu orçamento com um valor fixo mensal e tem suporte jurídico sempre que precisar.",
                 },
                 {
                   icon: <Scale className="text-gold" size={32} />,
-                  text: " 3. Acesso à Justiça garantido\nCom o plano, você tem um time ao seu lado — orientando preventivamente no dia a dia e pronto para atuar formalmente quando necessário. Acesso à Justiça com segurança, estratégia e respaldo profissional.",
+                  title: "3. Acesso à Justiça garantido",
+                  text: "Com o plano, você tem um time ao seu lado — orientando preventivamente no dia a dia e pronto para atuar formalmente quando necessário. Acesso à Justiça com segurança, estratégia e respaldo profissional.",
                 },
                 {
                   icon: <Phone className="text-gold" size={32} />,
-                  text: " 4. Atendimento rápido, direto e sem enrolação\nNada de espera ou burocracia. Você tem um canal exclusivo com atendimento jurídico de verdade, sempre.",
+                  title: "4. Atendimento rápido, direto e sem enrolação",
+                  text: "Nada de espera ou burocracia. Você tem um canal exclusivo com atendimento jurídico de verdade, sempre.",
                 },
                 {
                   icon: <Gift className="text-gold" size={32} />,
-                  text: " 5. Benefícios acumulativos\nQuanto mais tempo no plano, mais vantagens.",
+                  title: "5. Benefícios acumulativos",
+                  text: "Quanto mais tempo no plano, mais vantagens.",
                 },
                 {
                   icon: <Users className="text-gold" size={32} />,
-                  text: " 6. Proteção para sua família também\nPlanos com cobertura estendida permitem que seus familiares também tenham apoio jurídico direto, sem burocracia, sempre que precisarem.",
+                  title: "6. Proteção para sua família também",
+                  text: "Planos com cobertura estendida permitem que seus familiares também tenham apoio jurídico direto, sem burocracia, sempre que precisarem.",
                 },
               ].map((advantage, index) => (
                 <div
@@ -496,7 +502,10 @@ function App() {
                   className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0">{advantage.icon}</div>
-                  <p className="text-gray-600 whitespace-pre-line">{advantage.text}</p>
+                  <div>
+                    <h3 className="font-bold text-black mb-2">{advantage.title}</h3>
+                    <p className="text-gray-600 whitespace-pre-line">{advantage.text}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -793,7 +802,7 @@ function App() {
                 <Mail className="text-gold" size={24} />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gold">Email</h3>
-              <p className="text-gray-400">contactEmail@example.com</p>
+              <p className="text-gray-400">contato@kwadvocacia.com.br</p>
             </div>
             <div className="text-center">
               <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -844,8 +853,8 @@ function App() {
               <h4 className="text-lg font-semibold mb-4 text-gold">Contato</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>(21) 99841-7069</li>
-                <li>contactEmail@example.com</li>
-                <li>supportEmail@example.com</li>
+                <li>contato@kwadvocacia.com.br</li>
+                <li>suporte@kwadvocacia.com.br</li>
                 <li>Seg-Sex: 9h-17h</li>
               </ul>
             </div>
@@ -859,7 +868,7 @@ function App() {
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full border border-gold/20">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-serif text-black">Área do Cliente</h2>
+              <h2 className="text-2xl font-serif text-white">Área do Cliente</h2>
               <button
                 onClick={() => setShowLoginModal(false)}
                 className="text-gray-400 hover:text-gray-600"
@@ -872,29 +881,29 @@ function App() {
             </div>
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email ou CPF
                 </label>
                 <input
                   type="text"
                   value={loginData.emailOrCpf}
                   onChange={(e) => handleLoginInputChange("emailOrCpf", e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                  className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                   placeholder="Digite seu email ou CPF"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Senha</label>
                 <input
                   type="password"
                   value={loginData.password}
                   onChange={(e) => handleLoginInputChange("password", e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                  className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                   placeholder="Digite sua senha"
                   required
                 />
-                {loginError && <p className="text-red-500 text-sm mt-2">{loginError}</p>}
+                {loginError && <p className="text-red-400 text-sm mt-2">{loginError}</p>}
               </div>
               <button
                 type="submit"
@@ -915,7 +924,7 @@ function App() {
               <button className="text-gold hover:text-yellow-400 text-sm">
                 Esqueci minha senha
               </button>
-              <p className="text-gray-600 text-sm mt-2">
+              <p className="text-gray-300 text-sm mt-2">
                 Não tem cadastro?{" "}
                 <button
                   onClick={() => {
@@ -935,7 +944,7 @@ function App() {
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full border border-gold/20">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-serif text-black">Solicitar Cadastro</h2>
+              <h2 className="text-2xl font-serif text-white">Solicitar Cadastro</h2>
               <button
                 onClick={() => setShowRegisterModal(false)}
                 className="text-gray-400 hover:text-gray-600"
@@ -948,36 +957,36 @@ function App() {
             </div>
             <form onSubmit={handleRegisterSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Nome Completo
                 </label>
                 <input
                   type="text"
                   value={registerData.name}
                   onChange={(e) => handleRegisterInputChange("name", e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                  className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                   placeholder="Digite seu nome completo"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <input
                   type="email"
                   value={registerData.email}
                   onChange={(e) => handleRegisterInputChange("email", e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                  className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                   placeholder="Digite seu email"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">CPF</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">CPF</label>
                 <input
                   type="text"
                   value={registerData.cpf}
                   onChange={(e) => handleRegisterInputChange("cpf", e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                  className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                   placeholder="000.000.000-00"
                   maxLength={14}
                   required
@@ -991,7 +1000,7 @@ function App() {
               </button>
             </form>
             <div className="mt-4 text-center">
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-300 text-sm">
                 Sua solicitação será processada em até 24 horas úteis.
               </p>
             </div>
@@ -1004,7 +1013,7 @@ function App() {
             {!showModalityDetails ? (
               <>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-serif text-black">Verificação de Cliente</h2>
+                  <h2 className="text-2xl font-serif text-white">Verificação de Cliente</h2>
                   <button
                     onClick={closeCPFModal}
                     className="text-gray-400 hover:text-gray-600"
@@ -1017,26 +1026,26 @@ function App() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">CPF</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">CPF</label>
                     <input
                       type="text"
                       value={cpfInput}
                       onChange={(e) => setCpfInput(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                      className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                       placeholder="000.000.000-00"
                       maxLength={14}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Senha</label>
                     <input
                       type="password"
                       value={cpfModalPassword}
                       onChange={(e) => setCpfModalPassword(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-300 px-4 py-2 rounded-lg text-gray-900"
+                      className="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded-lg text-white"
                       placeholder="Digite sua senha"
                     />
-                    {cpfError && <p className="text-red-500 text-sm mt-2">{cpfError}</p>}
+                    {cpfError && <p className="text-red-400 text-sm mt-2">{cpfError}</p>}
                   </div>
                   <button
                     onClick={handleCPFSubmit}
@@ -1049,7 +1058,7 @@ function App() {
             ) : (
               <>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-serif text-black">Modalidade {selectedModality}</h2>
+                  <h2 className="text-2xl font-serif text-white">Modalidade {selectedModality}</h2>
                   <button
                     onClick={closeCPFModal}
                     className="text-gray-400 hover:text-gray-600"

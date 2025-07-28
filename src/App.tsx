@@ -31,9 +31,9 @@ import {
   CreditCard,
   HandHeart,
   HelpCircle,
-  LockIcon,
+  Lock as LockIcon,
   DollarSign,
-  ScaleIcon,
+  Scale as ScaleIcon,
   PhoneCall,
   Gift,
   Users as UsersIcon,
@@ -52,30 +52,6 @@ const validCredentials = {
 const openWhatsApp = () => {
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   window.open(url, "_blank");
-};
-
-// Dados das modalidades com preços
-const modalityDetails = {
-  Essencial: {
-    price: "97",
-    description:
-      "Indicado para: Profissionais que querem suporte jurídico preventivo e acesso inicial à estrutura",
-  },
-  Avançado: {
-    price: "159",
-    description:
-      "Indicado para: Quem deseja acompanhamento jurídico mais próximo e prioridade no atendimento.",
-  },
-  Premium: {
-    price: "249",
-    description:
-      "Indicado para: Profissionais que querem cobertura jurídica ampla e atendimento personalizado.",
-  },
-  Familiar: {
-    price: "389",
-    description:
-      "Proteção Jurídica para Quem Você Ama. Cônjuge ou companheiro(a) Até 2 filhos ou dependentes diretos Possibilidade de incluir mais dependentes por R$ 49/mês por pessoa adicional",
-  },
 };
 
 function App() {
@@ -109,15 +85,6 @@ function App() {
     setCurrentPage(page);
     setIsMenuOpen(false);
     window.scrollTo(0, 0);
-  };
-
-  const handleVerifyValue = (planName: string) => {
-    setSelectedModality(planName);
-    setShowCPFModal(true);
-    setCpfInput("");
-    setCpfModalPassword("");
-    setCpfError("");
-    setShowModalityDetails(false);
   };
 
   const handleLoginSubmit = (e: React.FormEvent) => {
@@ -265,88 +232,28 @@ function App() {
     },
   ];
 
-  const faqs = [
-    {
-      question: "Como funciona o atendimento jurídico?",
-      answer:
-        "Oferecemos atendimento personalizado através de consultas presenciais, por telefone, WhatsApp e videochamada.",
+  const modalityDetails = {
+    Essencial: {
+      price: "97",
+      description:
+        "Indicado para: Profissionais que querem suporte jurídico preventivo e acesso inicial à estrutura",
     },
-    {
-      question: "Quais documentos preciso levar para a consulta?",
-      answer:
-        "Os documentos necessários variam conforme o tipo de questão jurídica.",
+    Avançado: {
+      price: "159",
+      description:
+        "Indicado para: Quem deseja acompanhamento jurídico mais próximo e prioridade no atendimento.",
     },
-    {
-      question: "Os atendimentos são presenciais?",
-      answer:
-        "Sim, oferecemos atendimentos presenciais em nosso escritório, além de consultas digitais.",
+    Premium: {
+      price: "249",
+      description:
+        "Indicado para: Profissionais que querem cobertura jurídica ampla e atendimento personalizado.",
     },
-    {
-      question: "Como agendar uma consulta?",
-      answer:
-        "Você pode agendar sua consulta através do nosso WhatsApp, telefone ou e-mail.",
+    Familiar: {
+      price: "389",
+      description:
+        "Proteção Jurídica para Quem Você Ama. Cônjuge ou companheiro(a) Até 2 filhos ou dependentes diretos Possibilidade de incluir mais dependentes por R$ 49/mês por pessoa adicional",
     },
-    {
-      question: "Qual o prazo para resolução dos casos?",
-      answer:
-        "O prazo varia conforme a complexidade e natureza de cada caso.",
-    },
-  ];
-
-  const newFaqs = [
-    {
-      question: "Por que teria um plano jurídico se não estou com problema agora?",
-      answer:
-        "O plano jurídico atua preventivamente, resolvendo questões antes que virem problemas.",
-    },
-    {
-      question: "O plano cobre tudo? E se precisar entrar com um processo?",
-      answer:
-        "Depende do plano. Nos mais completos, ações judiciais estão inclusas.",
-    },
-    {
-      question: "E se eu quiser cancelar depois?",
-      answer:
-        "Você pode cancelar quando quiser, sem fidelidade.",
-    },
-    {
-      question: "Qual a diferença entre o plano e contratar um advogado direto?",
-      answer:
-        "O plano dá acesso contínuo a um consultor jurídico por um valor fixo mensal.",
-    },
-    {
-      question: "Vocês resolvem problemas de que tipo?",
-      answer:
-        "Dúvidas trabalhistas, questões familiares, direito do consumidor, contratos, etc.",
-    },
-  ];
-
-  const advantages = [
-    {
-      icon: <LockIcon className="text-gold" size={32} />,
-      text: "Segurança jurídica todos os dias.",
-    },
-    {
-      icon: <DollarSign className="text-gold" size={32} />,
-      text: "Economia real com valor fixo mensal.",
-    },
-    {
-      icon: <ScaleIcon className="text-gold" size={32} />,
-      text: "Acesso à Justiça garantido.",
-    },
-    {
-      icon: <PhoneCall className="text-gold" size={32} />,
-      text: "Atendimento rápido, direto e sem enrolação.",
-    },
-    {
-      icon: <Gift className="text-gold" size={32} />,
-      text: "Benefícios acumulativos ao longo do tempo.",
-    },
-    {
-      icon: <UsersIcon className="text-gold" size={32} />,
-      text: "Proteção para sua família também.",
-    },
-  ];
+  };
 
   // Login Page
   if (currentPage === "login") {
@@ -408,6 +315,111 @@ function App() {
                   Acessar Modalidades
                 </button>
               </div>
+            </div>
+          </div>
+        </section>
+        {/* New FAQ Section */}
+        <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gray-900">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold flex items-center justify-center">
+                <HelpCircle className="mr-2" size={32} /> 💬 Perguntas que as pessoas costumam ter ao pensar em contratar um plano jurídico:
+              </h2>
+            </div>
+            <div className="space-y-4">
+              {[
+                {
+                  question: "❓1. “Mas eu não estou com nenhum problema agora. Por que teria um plano jurídico?”",
+                  answer: "🔹 Porque o plano jurídico atua preventivamente. Assim como você tem um plano de saúde mesmo quando está bem, o plano jurídico resolve questões antes que virem dores de cabeça — e te orienta em qualquer dúvida do dia a dia: contratos, dívidas, trabalho, condomínio, vizinho, bancos, etc.",
+                },
+                {
+                  question: "❓2. “Esse plano cobre tudo? E se eu precisar entrar com um processo?”",
+                  answer: "🔹 Depende do plano escolhido. No plano básico, você tem orientação completa e consultas ilimitadas. Nos planos mais completos, você tem direito a ações judiciais inclusas, com honorários contratuais pagos pelo plano (exceto taxas e custas).",
+                },
+                {
+                  question: "❓3. “E se eu quiser cancelar depois?”",
+                  answer: "🔹 Você pode cancelar quando quiser, sem fidelidade. Mas atenção: quanto mais tempo você fica, mais benefícios você acumula.",
+                },
+                {
+                  question: "❓4. “Qual a diferença entre esse plano e contratar um advogado direto?”",
+                  answer: "🔹 O plano jurídico te dá acesso contínuo e imediato a um consultor jurídico. Você não precisa pagar toda vez que tiver uma dúvida ou para revisar um documento — é tudo incluído. Além disso, sai muito mais barato do que contratar por demanda.",
+                },
+                {
+                  question: "❓5. “Vocês resolvem problemas de que tipo?”",
+                  answer: "🔹 De tudo que faz parte da sua vida: • Dúvidas trabalhistas • Questões familiares (divórcio, guarda, pensão) • Direito do consumidor • Cobrança indevida • Nome sujo injustamente • Dificuldade com banco, aluguel, vizinhos, contratos • Ações judiciais (conforme plano) • Orientações, documentos, multas etc.",
+                },
+              ].map((faq, index) => (
+                <div key={index} className="bg-gray-800 rounded-lg border border-gold/20">
+                  <button
+                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-700"
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <span className="font-semibold text-gold">{faq.question}</span>
+                    {openFaq === index ? (
+                      <ChevronUp className="text-gold" size={20} />
+                    ) : (
+                      <ChevronDown className="text-gold" size={20} />
+                    )}
+                  </button>
+                  {openFaq === index && (
+                    <div className="px-6 pb-4">
+                      <p className="text-gray-300 whitespace-pre-line">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* New Advantages Section */}
+        <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
+                <CheckCircle className="mr-2" size={32} /> ✅ VANTAGENS:
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <Lock className="text-gold" size={32} />,
+                  text: "🔐 1. Segurança jurídica todos os dias\nVocê tem um advogado sempre pronto para tirar suas dúvidas e te orientar, sem pagar consulta toda vez.",
+                },
+                {
+                  icon: <DollarSign className="text-gold" size={32} />,
+                  text: "💰 2. Economia real\nEm vez de arcar com honorários altos e imprevistos quando surgir um problema, você planeja seu orçamento com um valor fixo mensal e tem suporte jurídico sempre que precisar.",
+                },
+                {
+                  icon: <Scale className="text-gold" size={32} />,
+                  text: "⚖️ 3. Acesso à Justiça garantido\nCom o plano, você tem um time ao seu lado — orientando preventivamente no dia a dia e pronto para atuar formalmente quando necessário. Acesso à Justiça com segurança, estratégia e respaldo profissional.",
+                },
+                {
+                  icon: <Phone className="text-gold" size={32} />,
+                  text: "📞 4. Atendimento rápido, direto e sem enrolação\nNada de espera ou burocracia. Você tem um canal exclusivo com atendimento jurídico de verdade, sempre.",
+                },
+                {
+                  icon: <Gift className="text-gold" size={32} />,
+                  text: "🎁 5. Benefícios acumulativos\nQuanto mais tempo no plano, mais vantagens.",
+                },
+                {
+                  icon: <Users className="text-gold" size={32} />,
+                  text: "👨‍👩‍👧 6. Proteção para sua família também\nPlanos com cobertura estendida permitem que seus familiares também tenham apoio jurídico direto, sem burocracia, sempre que precisarem.",
+                },
+              ].map((advantage, index) => (
+                <div key={index} className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex items-start space-x-4">
+                  <div className="flex-shrink-0">{advantage.icon}</div>
+                  <p className="text-gray-600 whitespace-pre-line">{advantage.text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <button
+                onClick={openWhatsApp}
+                className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 inline-flex items-center gap-2"
+              >
+                <MessageCircle size={20} />
+                Falar no WhatsApp
+              </button>
             </div>
           </div>
         </section>
@@ -482,180 +494,6 @@ function App() {
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </section>
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
-                <HelpCircle className="mr-2" size={32} /> Perguntas Frequentes sobre os Planos Jurídicos
-              </h2>
-              <p className="text-xl text-gray-600">
-                Entenda mais sobre como nossos planos podem ajudar você
-              </p>
-            </div>
-            <div className="space-y-4">
-              {newFaqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg border border-gray-200 shadow-sm"
-                >
-                  <button
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100"
-                    onClick={() => toggleFaq(index)}
-                  >
-                    <div className="flex items-center">
-                      <span className="font-semibold text-black">{faq.question}</span>
-                    </div>
-                    {openFaq === index ? (
-                      <ChevronUp className="text-black" size={20} />
-                    ) : (
-                      <ChevronDown className="text-black" size={20} />
-                    )}
-                  </button>
-                  {openFaq === index && (
-                    <div className="px-6 pb-4">
-                      <p className="text-gray-600 whitespace-pre-line">{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
-                <CheckCircle className="mr-2" size={32} /> Vantagens de ter um Plano Jurídico
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Conheça os benefícios de contar com nosso suporte jurídico contínuo
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {advantages.map((advantage, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex items-start space-x-4"
-                >
-                  <div className="flex-shrink-0">{advantage.icon}</div>
-                  <p className="text-gray-600">{advantage.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-12">
-              <button
-                onClick={openWhatsApp}
-                className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 inline-flex items-center gap-2"
-              >
-                <MessageCircle size={20} />
-                Falar no WhatsApp
-              </button>
-            </div>
-          </div>
-        </section>
-        <section id="areas" className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
-                Áreas de Atuação
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Oferecemos serviços especializados em diversas áreas do direito
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <FileText className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito Cível</h3>
-                <p className="text-gray-300">Ações cíveis, reparação de danos</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <Home className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito Imobiliário</h3>
-                <p className="text-gray-300">Compra, venda, locação de imóveis</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <Shield className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito Previdenciário</h3>
-                <p className="text-gray-300">Aposentadorias, pensões, benefícios</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <Building className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito Empresarial</h3>
-                <p className="text-gray-300">Constituição de empresas, contratos</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <Baby className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito de Família</h3>
-                <p className="text-gray-300">Divórcio, guarda, pensão alimentícia</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <FileText className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Contratos e Negociações</h3>
-                <p className="text-gray-300">Elaboração, revisão de contratos</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <Hammer className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito Trabalhista</h3>
-                <p className="text-gray-300">Rescisões, verbas trabalhistas</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <HandHeart className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Soluções Extrajudiciais</h3>
-                <p className="text-gray-300">Mediação, conciliação</p>
-              </div>
-              <div className="bg-gray-900 p-6 rounded-lg border border-gold/20 hover:border-gold/40">
-                <CreditCard className="text-gold mb-4" size={32} />
-                <h3 className="text-xl font-semibold mb-3 text-gold">Direito do Consumidor</h3>
-                <p className="text-gray-300">Defesa dos direitos do consumidor</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="contato" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
-                Entre em Contato
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Estamos prontos para ajudar você com suas questões jurídicas
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Phone className="text-gold" size={32} />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gold">Telefone</h3>
-                <p className="text-gray-300">(21) 99841-7061</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Mail className="text-gold" size={32} />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gold">E-mail</h3>
-                <p className="text-gray-300">contato@kwadvocacia.com.br</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Clock className="text-gold" size={32} />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gold">Horário</h3>
-                <p className="text-gray-300">Seg-Sex: 9h às 18h</p>
-              </div>
-            </div>
-            <div className="text-center mt-12">
-              <button
-                onClick={openWhatsApp}
-                className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 inline-flex items-center gap-2"
-              >
-                <MessageCircle size={20} />
-                Falar no WhatsApp
-              </button>
             </div>
           </div>
         </section>
@@ -871,7 +709,33 @@ function App() {
             <p className="text-xl text-gray-300">Tire suas dúvidas sobre nossos serviços</p>
           </div>
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            {[
+              {
+                question: "Como funciona o atendimento jurídico?",
+                answer:
+                  "Oferecemos atendimento personalizado através de consultas presenciais, por telefone, WhatsApp e videochamada.",
+              },
+              {
+                question: "Quais documentos preciso levar para a consulta?",
+                answer:
+                  "Os documentos necessários variam conforme o tipo de questão jurídica.",
+              },
+              {
+                question: "Os atendimentos são presenciais?",
+                answer:
+                  "Sim, oferecemos atendimentos presenciais em nosso escritório, além de consultas digitais.",
+              },
+              {
+                question: "Como agendar uma consulta?",
+                answer:
+                  "Você pode agendar sua consulta através do nosso WhatsApp, telefone ou e-mail.",
+              },
+              {
+                question: "Qual o prazo para resolução dos casos?",
+                answer:
+                  "O prazo varia conforme a complexidade e natureza de cada caso.",
+              },
+            ].map((faq, index) => (
               <div key={index} className="bg-gray-900 rounded-lg border border-gold/20">
                 <button
                   className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800"

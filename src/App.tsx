@@ -174,7 +174,7 @@ function App() {
     const cleanCPF = cpfForModalities.replace(/\D/g, "");
     const password = cpfModalPassword;
 
-    // Verificar se o CPF e senha são válidos
+    // Verificar se o CPF e senha são válidas
     if (validCredentials[cleanCPF] && validCredentials[cleanCPF] === password) {
       setCurrentPage("all-modalities");
       setCpfModalitiesError("");

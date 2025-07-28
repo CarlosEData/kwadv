@@ -538,54 +538,12 @@ function App() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-gold">
-                Perguntas Frequentes
-              </h2>
-              <p className="text-xl text-gray-300">
-                Tire suas dúvidas sobre nossos serviços
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-900 rounded-lg border border-gold/20"
-                >
-                  <button
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors"
-                    onClick={() => toggleFaq(index)}
-                  >
-                    <span className="font-semibold text-gold">
-                      {faq.question}
-                    </span>
-                    {openFaq === index ? (
-                      <ChevronUp className="text-gold" size={20} />
-                    ) : (
-                      <ChevronDown className="text-gold" size={20} />
-                    )}
-                  </button>
-                  {openFaq === index && (
-                    <div className="px-6 pb-4">
-                      <p className="text-gray-300">{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* New FAQ Section: Perguntas Frequentes sobre os Planos Jurídicos */}
+        {/* Updated FAQ Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black">
-                💬 Perguntas Frequentes sobre os Planos Jurídicos
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
+                <HelpCircle className="mr-2" size={32} /> Perguntas Frequentes sobre os Planos Jurídicos
               </h2>
               <p className="text-xl text-gray-600">
                 Entenda mais sobre como nossos planos podem ajudar você
@@ -596,26 +554,24 @@ function App() {
               {newFaqs.map((faq, index) => (
                 <div
                   key={index}
- جساء
                   className="bg-white rounded-lg border border-gray-200 shadow-sm"
                 >
                   <button
                     className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors"
-                    onClick={() => toggleFaq(index + faqs.length)}
+                    onClick={() => toggleFaq(index)}
                   >
                     <div className="flex items-center">
-                      <HelpCircle className="text-black mr-3 flex-shrink-0" size={20} />
                       <span className="font-semibold text-black">
                         {faq.question}
                       </span>
                     </div>
-                    {openFaq === index + faqs.length ? (
+                    {openFaq === index ? (
                       <ChevronUp className="text-black" size={20} />
                     ) : (
                       <ChevronDown className="text-black" size={20} />
                     )}
                   </button>
-                  {openFaq === index + faqs.length && (
+                  {openFaq === index && (
                     <div className="px-6 pb-4">
                       <p className="text-gray-600 whitespace-pre-line">{faq.answer}</p>
                     </div>
@@ -626,12 +582,12 @@ function App() {
           </div>
         </section>
 
-        {/* New Advantages Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        {/* Updated Advantages Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black">
-                ✅ Vantagens de ter um Plano Jurídico
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-black flex items-center justify-center">
+                <CheckCircle className="mr-2" size={32} /> Vantagens de ter um Plano Jurídico
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Conheça os benefícios de contar com nosso suporte jurídico contínuo
@@ -642,7 +598,7 @@ function App() {
               {advantages.map((advantage, index) => (
                 <div
                   key={index}
-                  className="flex items-start space-x-4"
+                  className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0">{advantage.icon}</div>
                   <p className="text-gray-600">{advantage.text}</p>
@@ -652,10 +608,11 @@ function App() {
 
             <div className="text-center mt-12">
               <button
-                onClick={() => navigateTo("all-modalities")}
+                onClick={openWhatsApp}
                 className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center gap-2"
               >
-                Ver Planos
+                <MessageCircle size={20} />
+                Falar no WhatsApp
               </button>
             </div>
           </div>
@@ -785,7 +742,6 @@ function App() {
               <div className="text-center">
                 <div className="bg-gold/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Phone className="text-gold" size={32} />
- inspira
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gold">
                   Telefone

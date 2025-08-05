@@ -39,19 +39,13 @@ import {
   Users as UsersIcon,
 } from "lucide-react";
 
-const whatsappNumber = "5521998417061";
-const whatsappMessage =
-  "Olá, gostaria de obter mais informações sobre os serviços jurídicos da KW Advocacia.";
-
-// Credenciais válidas para acesso às modalidades
 const validCredentials = {
   "05232003747": "123456",
   "22299375880": "123456",
 };
 
-const openWhatsApp = () => {
-  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  window.open(url, "_blank");
+const redirectToClientSite = () => {
+  window.open("https://cliente.kwadvocacia.com.br", "_blank");
 };
 
 function App() {
@@ -380,7 +374,7 @@ function App() {
                       ))}
                     </ul>
                     <button
-                      onClick={openWhatsApp}
+                      onClick={redirectToClientSite}
                       className="w-full bg-gold text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 flex items-center justify-center gap-2"
                     >
                       <MessageCircle size={18} />
@@ -392,7 +386,6 @@ function App() {
             </div>
           </div>
         </section>
-        {/* New FAQ Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -453,7 +446,6 @@ function App() {
             </div>
           </div>
         </section>
-        {/* New Advantages Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -511,11 +503,11 @@ function App() {
             </div>
             <div className="text-center mt-12">
               <button
-                onClick={openWhatsApp}
+                onClick={redirectToClientSite}
                 className="bg-gold text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-400 inline-flex items-center gap-2"
               >
                 <MessageCircle size={20} />
-                Falar no WhatsApp
+                Acessar Site do Cliente
               </button>
             </div>
           </div>
@@ -609,11 +601,11 @@ function App() {
             Soluções jurídicas modernas e acessíveis
           </p>
           <button
-            onClick={openWhatsApp}
+            onClick={redirectToClientSite}
             className="bg-gold text-black px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-400 inline-flex items-center gap-2"
           >
             <MessageCircle size={20} />
-            Fale Conosco Agora
+            Acessar Site do Cliente
           </button>
         </div>
       </section>
@@ -814,11 +806,11 @@ function App() {
           </div>
           <div className="text-center mt-12">
             <button
-              onClick={openWhatsApp}
+              onClick={redirectToClientSite}
               className="bg-gold text-black px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-400 inline-flex items-center gap-2"
             >
               <MessageCircle size={20} />
-              Falar no WhatsApp
+              Acessar Site do Cliente
             </button>
           </div>
         </div>
@@ -1089,7 +1081,7 @@ function App() {
                     ))}
                 </ul>
                 <button
-                  onClick={openWhatsApp}
+                  onClick={redirectToClientSite}
                   className="w-full bg-gold text-black font-semibold py-2 rounded-lg hover:bg-yellow-400"
                 >
                   Quero Esta Modalidade

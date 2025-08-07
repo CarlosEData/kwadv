@@ -38,8 +38,8 @@ import {
   Gift,
   Users as UsersIcon,
 } from "lucide-react";
-import firebase from 'firebase/app';
-import 'firebase/functions';
+import { initializeApp } from 'firebase/app';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
 // Configuração do Firebase (substitua pelos valores do seu projeto)
 const firebaseConfig = {

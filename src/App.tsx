@@ -41,15 +41,17 @@ import {
 import { initializeApp } from 'firebase/app';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
-// Configuração do Firebase (substitua pelos valores do seu projeto)
 const firebaseConfig = {
-  apiKey: "sua-api-key",
-  authDomain: "seu-projeto.firebaseapp.com",
-  projectId: "seu-projeto",
-  storageBucket: "seu-projeto.appspot.com",
-  messagingSenderId: "seu-sender-id",
-  appId: "seu-app-id"
+  apiKey: "AIzaSyClrajCtgfSVlCc-VJKY1hQvp8Ufl_I5SY",
+  authDomain: "kw-advocacia.firebaseapp.com",
+  projectId: "kw-advocacia",
+  storageBucket: "kw-advocacia.firebasestorage.app",
+  messagingSenderId: "806132247258",
+  appId: "1:806132247258:web:02d8059d8526c9a34b53e3",
 };
+
+const app = initializeApp(firebaseConfig);
+const functions = getFunctions(app);
 
 // Inicializar o Firebase
 if (!firebase.apps.length) {

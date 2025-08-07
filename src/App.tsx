@@ -38,6 +38,23 @@ import {
   Gift,
   Users as UsersIcon,
 } from "lucide-react";
+import firebase from 'firebase/app';
+import 'firebase/functions';
+
+// Configuração do Firebase (substitua pelos valores do seu projeto)
+const firebaseConfig = {
+  apiKey: "sua-api-key",
+  authDomain: "seu-projeto.firebaseapp.com",
+  projectId: "seu-projeto",
+  storageBucket: "seu-projeto.appspot.com",
+  messagingSenderId: "seu-sender-id",
+  appId: "seu-app-id"
+};
+
+// Inicializar o Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const validCredentials = {
   "05232003747": "123456",
@@ -49,10 +66,10 @@ const redirectToClientSite = () => {
 };
 
 function App() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState(null);
   const [currentPage, setCurrentPage] = useState("home");
   const [showCPFModal, setShowCPFModal] = useState(false);
-  const [selectedModality, setSelectedModality] = useState<string>("");
+  const [selectedModality, setSelectedModality] = useState("");
   const [cpfInput, setCpfInput] = useState("");
   const [showModalityDetails, setShowModalityDetails] = useState(false);
   const [cpfError, setCpfError] = useState("");
@@ -71,57 +88,68 @@ function App() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [cpfModalPassword, setCpfModalPassword] = useState("");
 
-  const toggleFaq = (index: number) => {
+  const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const navigateTo = (page: string) => {
+  const navigateTo = (page) => {
     setCurrentPage(page);
     setIsMenuOpen(false);
     window.scrollTo(0, 0);
   };
 
-  const handleLoginSubmit = (e: React.FormEvent) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setIsLoggingIn(true);
     setLoginError("");
 
-    setTimeout(() => {
-      const cpf = loginData.emailOrCpf.replace(/\D/g, "");
-      const password = loginData.password;
+    const cpf = loginData.emailOrCpf.replace(/\D/g, "");
+    const password = loginData.password;
 
-      if (validCredentials[cpf] && validCredentials[cpf] === password) {
+    if (validCredentials[cpf] && validCredentials[cpf] === password) {
+      try {
+        // Chamar a função do Firebase
+        const functions = firebase.functions();
+        const createStripeCheckoutSession = functions.httpsCallable('createStripeCheckoutSession');
+        
+        const result = await createStripeCheckoutSession({
+          modality: selectedModality || "Essencial", // Modalidade padrão se não selecionada
+          userEmail: loginData.emailOrCpf,
+        });
+
+        // Redirecionar para a URL de checkout do Stripe
+        window.location.href = result.data.url;
+      } catch (error) {
+        console.error("Erro ao criar sessão de checkout:", error);
+        setLoginError("Erro ao processar o pagamento. Tente novamente.");
+        setIsLoggingIn(false);
+      }
+    } else {
+      setLoginError(
+        "Dados inválidos. Apenas clientes cadastrados podem acessar esta área."
+      );
+      setTimeout(() => {
         setShowLoginModal(false);
-        setCurrentPage("all-modalities");
+        setCurrentPage("home");
         setLoginData({ emailOrCpf: "", password: "" });
         setLoginError("");
-      } else {
-        setLoginError(
-          "Dados inválidos. Apenas clientes cadastrados podem acessar esta área."
-        );
-        setTimeout(() => {
-          setShowLoginModal(false);
-          setCurrentPage("home");
-          setLoginData({ emailOrCpf: "", password: "" });
-          setLoginError("");
-        }, 2500);
-      }
-      setIsLoggingIn(false);
-    }, 1000);
+        setIsLoggingIn(false);
+      }, 2500);
+    }
   };
 
-  const handleLoginInputChange = (field: string, value: string) => {
+  const handleLoginInputChange = (field, value) => {
     setLoginData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleRegisterSubmit = (e: React.FormEvent) => {
+  const handleRegisterSubmit = (e) => {
     e.preventDefault();
     console.log("Cadastro enviado:", registerData);
     setShowRegisterModal(false);
     setRegisterData({ name: "", email: "", cpf: "" });
   };
 
-  const handleRegisterInputChange = (field: string, value: string) => {
+  const handleRegisterInputChange = (field, value) => {
     setRegisterData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -249,7 +277,6 @@ function App() {
     },
   };
 
-  // Login Page
   if (currentPage === "login") {
     return (
       <div className="min-h-screen bg-black text-white">
@@ -275,7 +302,9 @@ function App() {
               <div className="text-center mb-8">
                 <img src="/kw-logo.png" alt="KW Advocacia" className="h-16 w-auto" />
                 <h1 className="text-3xl font-serif mb-4 text-gold">Login</h1>
-                <p className="text-gray-300">Digite seu CPF para acessar as modalidades</p>
+                <p className="text-gray-300">Digite seu CPF para»
+
+ acessar as modalidades</p>
               </div>
               <div className="space-y-4">
                 <div>
@@ -316,7 +345,6 @@ function App() {
     );
   }
 
-  // All-Modalities Page
   if (currentPage === "all-modalities") {
     return (
       <div className="min-h-screen bg-black text-white">
@@ -349,7 +377,7 @@ function App() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {modalities.map((modality, index) => {
                 const modalityDetail =
-                  modalityDetails[modality.name as keyof typeof modalityDetails];
+                  modalityDetails[modality.name];
                 return (
                   <div
                     key={index}
@@ -374,7 +402,10 @@ function App() {
                       ))}
                     </ul>
                     <button
-                      onClick={redirectToClientSite}
+                      onClick={() => {
+                        setSelectedModality(modality.name);
+                        setShowLoginModal(true);
+                      }}
                       className="w-full bg-gold text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 flex items-center justify-center gap-2"
                     >
                       <MessageCircle size={18} />
@@ -516,7 +547,6 @@ function App() {
     );
   }
 
-  // Home Page
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="bg-black border-b border-gold/30 sticky top-0 z-40">
@@ -871,7 +901,7 @@ function App() {
             <div className="flex justify-center mb-6">
               <img src="/kw-logo.png" alt="KW Advocacia" className="h-16 w-auto" />
             </div>
-            <form onSubmit={handleLoginSubmit} className="space-y-4">
+            <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email ou CPF
@@ -898,7 +928,7 @@ function App() {
                 {loginError && <p className="text-red-400 text-sm mt-2">{loginError}</p>}
               </div>
               <button
-                type="submit"
+                onClick={handleLoginSubmit}
                 disabled={isLoggingIn}
                 className="w-full bg-gold text-black font-semibold py-2 rounded-lg hover:bg-yellow-400 disabled:opacity-50"
               >
@@ -911,7 +941,7 @@ function App() {
                   "Entrar"
                 )}
               </button>
-            </form>
+            </div>
             <div className="mt-4 text-center">
               <button className="text-gold hover:text-yellow-400 text-sm">
                 Esqueci minha senha
@@ -947,7 +977,7 @@ function App() {
             <div className="flex justify-center mb-6">
               <img src="/kw-logo.png" alt="KW Advocacia" className="h-16 w-auto" />
             </div>
-            <form onSubmit={handleRegisterSubmit} className="space-y-4">
+            <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Nome Completo
@@ -985,12 +1015,12 @@ function App() {
                 />
               </div>
               <button
-                type="submit"
+                onClick={handleRegisterSubmit}
                 className="w-full bg-gold text-black font-semibold py-2 rounded-lg hover:bg-yellow-400"
               >
                 Solicitar Cadastro
               </button>
-            </form>
+            </div>
             <div className="mt-4 text-center">
               <p className="text-gray-300 text-sm">
                 Sua solicitação será processada em até 24 horas úteis.
@@ -1063,11 +1093,11 @@ function App() {
                 </div>
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-gold mb-2">
-                    R$ {modalityDetails[selectedModality as keyof typeof modalityDetails]?.price}
+                    R$ {modalityDetails[selectedModality]?.price}
                   </div>
                   <div className="text-gray-600 text-sm">por mês</div>
                   <div className="text-xs text-gray-500 mt-2">
-                    {modalityDetails[selectedModality as keyof typeof modalityDetails]?.description}
+                    {modalityDetails[selectedModality]?.description}
                   </div>
                 </div>
                 <ul className="space-y-3 mb-6">
